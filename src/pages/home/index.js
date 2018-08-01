@@ -7,7 +7,6 @@
 'use strict';
 
 // Plugins
-import 'fullpage.js'
 
 // Utils
 import { TimelineLite } from 'gsap'
@@ -21,8 +20,6 @@ import styles from './index-css'
 let _s = classNames.bind(styles)
 
 // Pages
-import Page1 from './Page1'
-import Page2 from './Page2'
 
 class MyComponent extends React.Component {
     constructor(props) {
@@ -98,62 +95,13 @@ class MyComponent extends React.Component {
             }
         })
 
-        /**
-         * Init fullpage
-         * 
-         * Fragment code:
-         * $.fn.fullpage.setAllowScrolling(false)
-         */
-        $('#fullpage').fullpage({
-            sectionSelector: '.fullpage-slide',
-            normalScrollElements: '.fp-normal-scroll',
-            touchSensitivity: 15,
-            scrollingSpeed: Util.isIE() ? 1300 : 800,
-            scrollHorizontally: true,
-            loopHorizontal: false,
-            controlArrows: false,
-
-            // Events
-            afterLoad: (anchorLink, index)=>{
-                // $(window).trigger('scroll-fullpage', 
-                //     {type: 'SWIPE', payload: {
-                //         show: true,
-                //         color: 'red'
-                //     }}
-                // );
-
-                let current_page = _me.fullpage_sections.eq(index - 1)
-
-                // Start every page animation
-                !this.state.loading && _me[current_page.data('id')].initAni()
-
-            },
-            onLeave: (index, nextIndex, dir)=>{
-                console.log('Leave', index, nextIndex, dir)
-
-                let next_page = _me.fullpage_sections.eq(nextIndex-1);
-
-                // Clear page animation
-                _me[next_page.data('id')].resetAni()
-            },
-            afterRender: ()=>{
-                // DOM is ready
-                console.log('fp render')
-
-            }
-        });
+        
     }
     
     render() {
         return (
             <section className={_s('home')}>
-                {/* Full Page */}
-                <div id="fullpage">
-                    {/* Story 1 */}
-                    <Page1 ref={_this => this.page1 = _this} />
-
-                    <Page2 ref={_this => this.page2 = _this} />
-                </div>
+                
             </section>
         );
     }
