@@ -11,8 +11,6 @@ const PAGE_PATH = [
     // config you page path here
     'home/index'
 
-    ,'about/index'
-
 ], ENTRY = {};
 
 PAGE_PATH.forEach((page) => {

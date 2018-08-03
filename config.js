@@ -14,7 +14,7 @@ module.exports = {
 
     // multi-pages
     ,page1:{ // 你我新时代
-        title: ''
+        title: 'Three.js global sample'
         ,desc: ''
         ,image: ''
         ,url: 'https://url/article/new-era-for-china.html'

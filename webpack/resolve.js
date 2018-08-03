@@ -15,6 +15,9 @@ module.exports = {
          */
         'split-text': path.resolve(vendor_path, 'SplitText.min.js')
         ,'jquery-loader': path.resolve(vendor_path, 'jquery.html5Loader.min.js')
+        ,'threer95': path.resolve(vendor_path, 'threer95.min.js')
+        ,'stats': path.resolve(vendor_path, 'stats.min.js')
+        ,'CanvasRenderer': path.resolve(vendor_path, 'CanvasRenderer.js')
     },
 
     extensions: ['.js', '.styl', '.css', '.jpg', '.gif', '.png'],

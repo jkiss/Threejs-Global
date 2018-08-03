@@ -50,13 +50,6 @@ module.exports = {
             _entry: 'home.index',  // 用于多页判断
             page: config.page1
         })
-        ,new htmlWebpackPlugin({
-            inject: false,
-            filename: 'about/index.html',
-            template: path.resolve(__dirname, '../src/htmlTemplates/app.ejs'),
-            _entry: 'about.index',  // 用于多页判断
-            page: config.page2
-        })
 
         // Automatically loaded modules when identifier is used as free variable in a module
         ,new webpack.ProvidePlugin({
