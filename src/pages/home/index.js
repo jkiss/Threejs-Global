@@ -24,7 +24,7 @@ import styles from './index-css'
 let _s = classNames.bind(styles)
 
 // res
-import img_earth from './img/earth4.jpg'
+import img_earth from './img/y_earth.jpg'
 import img_weather from './img/weather.jpg'
 import img_marker from './img/marker.png'
 
@@ -43,13 +43,15 @@ class MyComponent extends React.Component {
 
         let _me = this
 
+        let CAMERA_RADIUS = 500
+
         let container = document.getElementById( 'container' );
         let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 2000 );
-        camera.position.z = 500;
+        camera.position.z = CAMERA_RADIUS;
         let scene = new THREE.Scene();
-        scene.background = new THREE.Color( 0xeeeeee );
+        scene.background = new THREE.Color( 0x183939 );
         let group = new THREE.Group();
-        group.rotation.y -= 1.9;
+        // group.rotation.y -= 1.9;
         scene.add( group );
 
         let stats;
@@ -80,7 +82,13 @@ class MyComponent extends React.Component {
             // value = value < min ? min : value;
             // value = value > max ? max : value;
             // var howmany = Math.round(_helpers.HELPERS.mapRange(value, min, max, 10, 30));
-            let pos = _me.xyzFromLatLng(point.lat, point.lon, RADIUS);
+            let pos = _me.xyzFromLatLng(point.lat, point.lon, RADIUS+10);
+
+            let camera_pos = _me.xyzFromLatLng(point.lat, point.lon, CAMERA_RADIUS);
+            camera.position.x = camera_pos.x
+            camera.position.y = camera_pos.y
+            camera.position.z = camera_pos.z
+            camera.lookAt( scene.position )
             
             return {
                 pos: pos,
@@ -107,11 +115,14 @@ class MyComponent extends React.Component {
 
             marker_sprite = new THREE.Sprite( material );
 
-            marker_sprite.position.set(markerData[0].pos.x + 10, markerData[0].pos.y + 10, markerData[0].pos.z + 10)
+            marker_sprite.position.set(markerData[0].pos.x, markerData[0].pos.y, markerData[0].pos.z)
+            console.log('POS 1', marker_sprite.position)
             // marker_sprite.position = markerData[0].pos
             marker_sprite.position.normalize()
-            marker_sprite.position.multiplyScalar(RADIUS+10)
-            marker_sprite.scale.set(30,30,1.3)
+            console.log('POS 2', marker_sprite.position)
+            marker_sprite.position.multiplyScalar(RADIUS+1)
+            console.log('POS 3', marker_sprite.position)
+            marker_sprite.scale.set(20,20,1)
 
             group.add( marker_sprite )
 
@@ -149,11 +160,6 @@ class MyComponent extends React.Component {
             // let geometry = new THREE.BufferGeometry,
             //     count = 1
 
-            // // geometry.vertices.push(new THREE.Vector3(
-			// // 	150,
-			// // 	-100,
-			// // 	-100
-			// // ))
             // geometry.addAttribute("position", new THREE.BufferAttribute(new Float32Array([150,-100,-100]),3));
             // // geometry.addAttribute("opacity", new THREE.BufferAttribute(new Float32Array(count * 2),2).setDynamic(true));
             // // geometry.addAttribute("fade", new THREE.BufferAttribute(new Float32Array(count),1).setDynamic(true));
@@ -175,6 +181,8 @@ class MyComponent extends React.Component {
                 var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
                 var mesh = new THREE.Mesh( geometry, material );
                 group.add( mesh );
+
+                console.log('GROUP', group.rotation)
             } );
 
             // weather
@@ -207,17 +215,38 @@ class MyComponent extends React.Component {
         }
 
         function render() {
-            // camera.position.x += 0.5;
-            // camera.position.y += 0.5;
-            // camera.lookAt( scene.position );
-            // group.rotation.y += 0.0005;
+            
+            if(!!marker_sprite){
+                // camera.position.x = marker_sprite.position.x;
+                // camera.position.y = marker_sprite.position.y;
+                // camera.position.z = marker_sprite.position.z;
+
+                // camera.position.multiplyScalar(2)
+
+                // console.log('cccc', camera.position)
+                camera.lookAt( scene.position );
+
+                if(marker_sprite.scale.x > 20){
+                    marker_sprite.scale.x = 0.1
+                    marker_sprite.scale.y = 0.1
+                }else{
+                    marker_sprite.scale.x += 1
+                    marker_sprite.scale.y += 1
+                }
+                
+
+                camera.updateProjectionMatrix()
+            }
+            
+            
+            group.rotation.y += 0.0005;
             if(!!weatherMesh){
                 weatherMesh.rotation.y += 0.0004;
             }
             
             renderer.render( scene, camera );
         }
-        
+        console.log('cccc', camera.position)
 
         function animate() {
             requestAnimationFrame( animate );
@@ -226,7 +255,6 @@ class MyComponent extends React.Component {
             stats.update();
         }
 
-        console.log(new THREE.Vector3)
     }
 
     cluster(points, distance) {
