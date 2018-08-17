@@ -7,10 +7,11 @@
 'use strict';
 
 // Plugins
-import * as THREE from 'three'
-// import THREE from 'threer95'
+// import THREE from 'three'
+// window.THREE = require('threer95')
 // import 'CanvasRenderer'
 import Stats from 'stats'
+import TWEEN from '@tweenjs/tween.js'
 
 // Utils
 import { TimelineLite } from 'gsap'
@@ -24,7 +25,7 @@ import styles from './index-css'
 let _s = classNames.bind(styles)
 
 // res
-import img_earth from './img/y_earth.jpg'
+import img_earth from './img/earth6.jpg'
 import img_weather from './img/weather.jpg'
 import img_marker from './img/marker.png'
 
@@ -36,6 +37,34 @@ class MyComponent extends React.Component {
             // Loading
             loading: true
         }
+
+        this.citys = [{
+                city: 'Berea',
+                country: 'South Africa',
+                date: '2018-06-19',
+                lat: -29.8505555,
+                lon: 31.0019444,
+                region: 'KwaZulu-Natal',
+                value: 147.8660430908203
+            },{
+                city:"Lagos",
+                country:"Nigeria",
+                date:"2018-01-09",
+                lat:6.524379,
+                lon:3.379206,
+                region:"Lagos",
+                value:555.056659
+            }]
+
+        this.citys_data = null
+
+        this.CAMERA = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 2000 );
+        this.CAMERA_RADIUS = 500
+
+        this.SCENE = new THREE.Scene();
+
+        this.LAT_LON = {lat: 0, lon: 0}
+        this.CAMERA_TWEEN = new TWEEN.Tween(this.LAT_LON)
     }
 
     componentDidMount() {
@@ -43,16 +72,14 @@ class MyComponent extends React.Component {
 
         let _me = this
 
-        let CAMERA_RADIUS = 500
-
         let container = document.getElementById( 'container' );
-        let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 2000 );
-        camera.position.z = CAMERA_RADIUS;
-        let scene = new THREE.Scene();
-        scene.background = new THREE.Color( 0x183939 );
+
+        _me.CAMERA.position.z = _me.CAMERA_RADIUS;
+        
+        _me.SCENE.background = new THREE.Color( 0x183939 );
         let group = new THREE.Group();
         // group.rotation.y -= 1.9;
-        scene.add( group );
+        _me.SCENE.add( group );
 
         let stats;
         let renderer;
@@ -72,23 +99,18 @@ class MyComponent extends React.Component {
             lon: 31.0019444,
             region: 'KwaZulu-Natal',
             value: 147.8660430908203
+        },{
+            city:"Lagos",
+            country:"Nigeria",
+            date:"2018-01-09",
+            lat:6.524379,
+            lon:3.379206,
+            region:"Lagos",
+            value:555.056659
         }]
 
-        let markerData = marker.map((point)=>{
-            // dist.push(point.distance);
-            // var min = 20;
-            // var max = 3e3;
-            // var value = point.value;
-            // value = value < min ? min : value;
-            // value = value > max ? max : value;
-            // var howmany = Math.round(_helpers.HELPERS.mapRange(value, min, max, 10, 30));
+        _me.citys_data = marker.map((point)=>{
             let pos = _me.xyzFromLatLng(point.lat, point.lon, RADIUS+10);
-
-            let camera_pos = _me.xyzFromLatLng(point.lat, point.lon, CAMERA_RADIUS);
-            camera.position.x = camera_pos.x
-            camera.position.y = camera_pos.y
-            camera.position.z = camera_pos.z
-            camera.lookAt( scene.position )
             
             return {
                 pos: pos,
@@ -101,12 +123,9 @@ class MyComponent extends React.Component {
                 distance: 0
             }
         })
-        console.log('markerData', markerData[0].pos)
+        console.log('markerData', _me.citys_data[0].pos)
 
         // add marker
-        let VERTEX = "\nattribute float fade;\nattribute float nearCenter;\nattribute float start;\nattribute vec2 opacity;\n\nuniform float size;\nuniform float time;\n\nvarying float op;\n\nvoid main() {\n  vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );\n\n  // Opacity\n  float elapsed = time - start;\n  op = opacity.x + fade * elapsed;\n  op = clamp(op, opacity.x, opacity.y);\n\n  // Hide the markers behind the earth\n  float zPos = dot(cameraPosition, cameraPosition) - mvPosition.z * mvPosition.z;\n  op *= smoothstep(0.25, 0.75, zPos);\n\n  float _size = size * nearCenter;\n\n  gl_PointSize = step(0., op) * _size * ( 300.0 / -mvPosition.z );\n  gl_Position = projectionMatrix * mvPosition;\n}\n";
-        let FRAG = "\nuniform sampler2D texture;\n\nvarying float op;\n\nvoid main() {\n  vec4 c = texture2D(texture, gl_PointCoord);\n  gl_FragColor = vec4(c.xyz, c.a * op);\n}\n";
-
         let texture = loader.load(img_marker, (texture)=>{
 
             texture.needsUpdate = true;
@@ -115,59 +134,16 @@ class MyComponent extends React.Component {
 
             marker_sprite = new THREE.Sprite( material );
 
-            marker_sprite.position.set(markerData[0].pos.x, markerData[0].pos.y, markerData[0].pos.z)
-            console.log('POS 1', marker_sprite.position)
-            // marker_sprite.position = markerData[0].pos
+            marker_sprite.position.set(_me.citys_data[0].pos.x, _me.citys_data[0].pos.y, _me.citys_data[0].pos.z)
+
             marker_sprite.position.normalize()
-            console.log('POS 2', marker_sprite.position)
+
             marker_sprite.position.multiplyScalar(RADIUS+1)
-            console.log('POS 3', marker_sprite.position)
+
             marker_sprite.scale.set(20,20,1)
 
             group.add( marker_sprite )
 
-            // ---2---
-            // var geometry = new THREE.SphereGeometry( 3, 64, 64 );
-            // var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
-            // var mesh = new THREE.Mesh( geometry, material );
-            // mesh.position.set(markerData[0].pos.x + 10, markerData[0].pos.y + 10, markerData[0].pos.z + 10)
-            // group.add( mesh );
-
-            // ---3---
-            // texture.flipY = false;
-            // let MIN_SIZE = .27;
-            // let uniforms = {
-            //     texture: {
-            //         value: texture
-            //     },
-            //     size: {
-            //         value: MIN_SIZE * _me.DPR(),
-            //         type: "f"
-            //     },
-            //     time: {
-            //         value: 0,
-            //         type: "f"
-            //     }
-            // }
-            // let material = new THREE.ShaderMaterial({
-            //     uniforms: uniforms,
-            //     vertexShader: VERTEX,
-            //     fragmentShader: FRAG,
-            //     blending: THREE.NormalBlending,
-            //     depthTest: false,
-            //     transparent: true
-            // });
-            // let geometry = new THREE.BufferGeometry,
-            //     count = 1
-
-            // geometry.addAttribute("position", new THREE.BufferAttribute(new Float32Array([150,-100,-100]),3));
-            // // geometry.addAttribute("opacity", new THREE.BufferAttribute(new Float32Array(count * 2),2).setDynamic(true));
-            // // geometry.addAttribute("fade", new THREE.BufferAttribute(new Float32Array(count),1).setDynamic(true));
-            // // geometry.addAttribute("start", new THREE.BufferAttribute(new Float32Array(count),1).setDynamic(true));
-            // // geometry.addAttribute("nearCenter", new THREE.BufferAttribute(new Float32Array(count).fill(1),1).setDynamic(true));
-            // let mesh = new THREE.Points(geometry, material);
-
-            // group.add( mesh )
         })
 
         init();
@@ -198,7 +174,7 @@ class MyComponent extends React.Component {
 
                 weatherMesh = new THREE.Mesh(geometry, material);
                 // group.add(weatherMesh);
-                scene.add( weatherMesh );
+                _me.SCENE.add( weatherMesh );
             });
 
             // renderer = new THREE.CanvasRenderer();
@@ -217,42 +193,44 @@ class MyComponent extends React.Component {
         function render() {
             
             if(!!marker_sprite){
-                // camera.position.x = marker_sprite.position.x;
-                // camera.position.y = marker_sprite.position.y;
-                // camera.position.z = marker_sprite.position.z;
+                // _me.CAMERA.position.x += 1
+                // _me.CAMERA.position.y += 1
+                // _me.CAMERA.position.z += 1
 
-                // camera.position.multiplyScalar(2)
+                // _me.CAMERA.position.multiplyScalar(2)
 
-                // console.log('cccc', camera.position)
-                camera.lookAt( scene.position );
+                // console.log('cccc', _me.CAMERA.position)
+                _me.CAMERA.lookAt( _me.SCENE.position );
 
                 if(marker_sprite.scale.x > 20){
                     marker_sprite.scale.x = 0.1
                     marker_sprite.scale.y = 0.1
                 }else{
-                    marker_sprite.scale.x += 1
-                    marker_sprite.scale.y += 1
+                    marker_sprite.scale.x += 0.5
+                    marker_sprite.scale.y += 0.5
                 }
                 
 
-                camera.updateProjectionMatrix()
+                _me.CAMERA.updateProjectionMatrix()
             }
             
             
-            group.rotation.y += 0.0005;
+            // group.rotation.y += 0.0005;
             if(!!weatherMesh){
                 weatherMesh.rotation.y += 0.0004;
             }
             
-            renderer.render( scene, camera );
+            renderer.render( _me.SCENE, _me.CAMERA );
         }
-        console.log('cccc', camera.position)
+        console.log('cccc', _me.CAMERA.position)
 
         function animate() {
             requestAnimationFrame( animate );
             render();
 
             stats.update();
+            // Tween FPS
+            TWEEN.update();
         }
 
     }
@@ -313,11 +291,56 @@ class MyComponent extends React.Component {
     DPR() {
         return window.devicePixelRatio < 1.5 ? window.devicePixelRatio : 1.5
     }
+
+    lookAtCamera(point){
+        let _me = this,
+            curr_pos = {},
+            target_pos = {lat: point.lat, lon: point.lon}
+
+        Object.assign(curr_pos, _me.CAMERA.position)
+
+        console.log(point)
+
+        // locate camera
+        // let camera_pos = _me.xyzFromLatLng(point.lat, point.lon, CAMERA_RADIUS);
+        // camera.position.x = camera_pos.x
+        // camera.position.y = camera_pos.y
+        // camera.position.z = camera_pos.z
+        // camera.lookAt( scene.position )
+
+        _me.CAMERA_TWEEN
+            .to(target_pos, 2000)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onUpdate(function(obj){
+                // console.log(obj)
+                let xyz = _me.xyzFromLatLng(obj.lat, obj.lon, _me.CAMERA_RADIUS)
+
+                _me.CAMERA.position.x = xyz.x
+                _me.CAMERA.position.y = xyz.y
+                _me.CAMERA.position.z = xyz.z
+                _me.CAMERA.lookAt( _me.SCENE.position )
+            })
+            .start()
+
+    }
+
+    handleCityClick(e){
+        let _me = this,
+            ele = $(e.target),
+            no = ele.data('city'),
+            city = _me.citys_data[no]
+
+        _me.lookAtCamera(city)
+        // console.log(city)
+    }
     
     render() {
         return (
-            <section id="container" className={_s('home')}>
+            <section className={_s('home')}>
+                <div id="container"></div>
 
+                <button id="city1" className={_s('btn', 'city1')} data-city="0" onClick={this.handleCityClick.bind(this)}>City 1</button>
+                <button id="city2" className={_s('btn', 'city2')} data-city="1" onClick={this.handleCityClick.bind(this)}>City 2</button>
             </section>
         );
     }

@@ -8,7 +8,7 @@
 
 module.exports = {
     // Deploy
-    public_path: '/home'
+    public_path: '/2018/3D-demo'
     ,port: 8989
     ,plugin_url: ''
 

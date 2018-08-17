@@ -69,6 +69,11 @@ module.exports = {
                 from: 'favicon.png',
                 to: ''
             }
+            ,{
+                from: '**/*.*',
+                to: 'vendor',
+                context: 'src/vendor/copy/'
+            }
         ])
     ]
 }
