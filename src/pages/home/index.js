@@ -29,6 +29,42 @@ import img_earth from './img/earth6.jpg'
 import img_weather from './img/weather.jpg'
 import img_marker from './img/marker.png'
 
+class Particles{
+    constructor(){
+
+    }
+
+    addPoints(pos){
+        let _me = this
+        
+        // prepare geo & mtl
+        let starsGeometry = new THREE.Geometry(),
+            offset = 5
+
+        for ( var i = 0; i < 50; i ++ ) {
+
+            var star = new THREE.Vector3();
+            star.x = THREE.Math.randFloat( pos.x - offset, pos.x + offset );
+            star.y = THREE.Math.randFloat( pos.y - offset, pos.y + offset );
+            star.z = THREE.Math.randFloat( pos.z - offset, pos.z + offset );
+
+            starsGeometry.vertices.push( star );
+
+        }
+
+        var starsMaterial = new THREE.PointsMaterial( { color: 0xffffff } );
+
+        var mesh = new THREE.Points( starsGeometry, starsMaterial );
+
+        // _me.SCENE.add( starField );
+        return mesh
+    }
+
+    tick(){
+
+    }
+}
+
 class MyComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -64,7 +100,10 @@ class MyComponent extends React.Component {
         this.SCENE = new THREE.Scene();
 
         this.LAT_LON = {lat: 0, lon: 0}
+        this.INIT_LAT_LON = {lat: 6.527309, lon: 21.699449}
         this.CAMERA_TWEEN = new TWEEN.Tween(this.LAT_LON)
+
+        this.light1 = null
     }
 
     componentDidMount() {
@@ -78,7 +117,16 @@ class MyComponent extends React.Component {
         
         _me.SCENE.background = new THREE.Color( 0x183939 );
         let group = new THREE.Group();
-        // group.rotation.y -= 1.9;
+
+        _me.light1 = new THREE.DirectionalLight(0xffffff, 1)
+        // light1.position.setFromSpherical(new THREE.Spherical(100000,THREE.Math.degToRad(100),THREE.Math.degToRad(10)))
+        _me.light1.position.set(0, 0, _me.CAMERA_RADIUS)
+        _me.SCENE.add(_me.light1)
+
+        // let light2 = new THREE.DirectionalLight(0xfffae8, 1);
+        // light2.position.set(-1300, 1000, -2000)
+        // _me.SCENE.add(light2)
+
         _me.SCENE.add( group );
 
         let stats;
@@ -125,40 +173,45 @@ class MyComponent extends React.Component {
         })
         console.log('markerData', _me.citys_data[0].pos)
 
-        // add marker
-        let texture = loader.load(img_marker, (texture)=>{
-
-            texture.needsUpdate = true;
-
-            let material = new THREE.SpriteMaterial( { map: texture, color: 0xffffff, fog: true } )
-
-            marker_sprite = new THREE.Sprite( material );
-
-            marker_sprite.position.set(_me.citys_data[0].pos.x, _me.citys_data[0].pos.y, _me.citys_data[0].pos.z)
-
-            marker_sprite.position.normalize()
-
-            marker_sprite.position.multiplyScalar(RADIUS+1)
-
-            marker_sprite.scale.set(20,20,1)
-
-            group.add( marker_sprite )
-
-        })
-
         init();
         animate();
 
         function init() {
+            // add marker
+            let texture = loader.load(img_marker, (texture)=>{
+
+                texture.needsUpdate = true;
+
+                let material = new THREE.SpriteMaterial( { map: texture, color: 0xffffff, fog: true } )
+
+                marker_sprite = new THREE.Sprite( material );
+
+                marker_sprite.position.set(_me.citys_data[0].pos.x, _me.citys_data[0].pos.y, _me.citys_data[0].pos.z)
+
+                marker_sprite.position.normalize()
+
+                marker_sprite.position.multiplyScalar(RADIUS+1)
+
+                marker_sprite.scale.set(20,20,1)
+
+                group.add( marker_sprite )
+
+            })
 
             // earth
             loader.load( img_earth, (texture)=>{
                 var geometry = new THREE.SphereGeometry( RADIUS, 64, 64 );
-                var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+                // var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+                var material = new THREE.MeshPhongMaterial( { 
+                    map: texture, 
+                    specular: new THREE.Color(0,0,0),
+                    shininess: .25
+                } );
                 var mesh = new THREE.Mesh( geometry, material );
                 group.add( mesh );
 
                 console.log('GROUP', group.rotation)
+                // _me.SCENE.add(group)
             } );
 
             // weather
@@ -173,9 +226,13 @@ class MyComponent extends React.Component {
                 });
 
                 weatherMesh = new THREE.Mesh(geometry, material);
-                // group.add(weatherMesh);
-                _me.SCENE.add( weatherMesh );
+
+                group.add(weatherMesh);
+                // _me.SCENE.add( weatherMesh );
             });
+
+            // points
+            // _me.addPoints(_me.citys_data[0].pos)
 
             // renderer = new THREE.CanvasRenderer();
             renderer = new THREE.WebGLRenderer({
@@ -185,7 +242,7 @@ class MyComponent extends React.Component {
             renderer.setSize( window.innerWidth, window.innerHeight );
             container.appendChild( renderer.domElement );
 
-
+            // FPS stats
             stats = new Stats();
             container.appendChild( stats.dom );
         }
@@ -235,37 +292,6 @@ class MyComponent extends React.Component {
 
     }
 
-    cluster(points, distance) {
-        points = points.slice(0);
-        var clusters = [];
-        for (var i = points.length - 1; i > -1; i--) {
-            var p = points.splice(i, 1)[0];
-            var cluster = [p];
-            for (var j = i - 1; j > -1; j--) {
-                var p1 = points[j];
-                var isClose = true;
-                for (var k = 0; k < cluster.length; k++) {
-                    if (HELPERS.distanceBetweenTwoCoordinations({
-                        lat: cluster[k].lat,
-                        lng: cluster[k].lon
-                    }, {
-                        lat: p1.lat,
-                        lng: p1.lon
-                    }) > distance) {
-                        isClose = false;
-                        break
-                    }
-                }
-                if (isClose) {
-                    cluster.push(points.splice(j, 1)[0]);
-                    i--
-                }
-            }
-            clusters.push(cluster)
-        }
-        return clusters
-    }
-
     distanceBetweenTwoCoordinations(point1, point2) {
         var R = 6371e3;
         var φ1 = toRadians(point1.lat);
@@ -301,13 +327,6 @@ class MyComponent extends React.Component {
 
         console.log(point)
 
-        // locate camera
-        // let camera_pos = _me.xyzFromLatLng(point.lat, point.lon, CAMERA_RADIUS);
-        // camera.position.x = camera_pos.x
-        // camera.position.y = camera_pos.y
-        // camera.position.z = camera_pos.z
-        // camera.lookAt( scene.position )
-
         _me.CAMERA_TWEEN
             .to(target_pos, 2000)
             .easing(TWEEN.Easing.Quadratic.InOut)
@@ -319,6 +338,10 @@ class MyComponent extends React.Component {
                 _me.CAMERA.position.y = xyz.y
                 _me.CAMERA.position.z = xyz.z
                 _me.CAMERA.lookAt( _me.SCENE.position )
+
+                _me.light1.position.x = xyz.x
+                _me.light1.position.y = xyz.y
+                _me.light1.position.z = xyz.z
             })
             .start()
 
