@@ -2,7 +2,7 @@
  * @Author: Nokey 
  * @Date: 2017-07-13 18:03:17 
  * @Last Modified by: Mr.B
- * @Last Modified time: 2018-06-08 18:24:12
+ * @Last Modified time: 2018-08-26 22:47:34
  */
 'use strict';
 
@@ -133,31 +133,28 @@ class MyComponent extends React.Component {
         let renderer;
         let weatherMesh;
         let marker_sprite;
-        let mouseX = 0, mouseY = 0;
-        let windowHalfX = window.innerWidth / 2;
-        let windowHalfY = window.innerHeight / 2;
         let RADIUS = 200
         let loader = new THREE.TextureLoader();
 
-        let marker = [{
-            city: 'Berea',
-            country: 'South Africa',
-            date: '2018-06-19',
-            lat: -29.8505555,
-            lon: 31.0019444,
-            region: 'KwaZulu-Natal',
-            value: 147.8660430908203
-        },{
-            city:"Lagos",
-            country:"Nigeria",
-            date:"2018-01-09",
-            lat:6.524379,
-            lon:3.379206,
-            region:"Lagos",
-            value:555.056659
-        }]
+        // let marker = [{
+        //     city: 'Berea',
+        //     country: 'South Africa',
+        //     date: '2018-06-19',
+        //     lat: -29.8505555,
+        //     lon: 31.0019444,
+        //     region: 'KwaZulu-Natal',
+        //     value: 147.8660430908203
+        // },{
+        //     city:"Lagos",
+        //     country:"Nigeria",
+        //     date:"2018-01-09",
+        //     lat:6.524379,
+        //     lon:3.379206,
+        //     region:"Lagos",
+        //     value:555.056659
+        // }]
 
-        _me.citys_data = marker.map((point)=>{
+        _me.citys_data = _me.citys.map((point)=>{
             let pos = _me.xyzFromLatLng(point.lat, point.lon, RADIUS+10);
             
             return {
