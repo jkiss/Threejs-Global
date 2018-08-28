@@ -7,6 +7,7 @@
 'use strict';
 
 // plugins
+import * as THREE from 'three'
 import Stats from 'stats'
 import TWEEN from '@tweenjs/tween.js'
 

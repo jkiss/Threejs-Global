@@ -7,7 +7,7 @@
 'use strict';
 
 // Plugins
-// import THREE from 'three'
+
 // window.THREE = require('threer95')
 // import 'CanvasRenderer'
 import Stats from 'stats'
