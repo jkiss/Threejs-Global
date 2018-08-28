@@ -36,7 +36,11 @@ class MyComponent extends React.Component {
 
         this.state = {
             // Loading
-            loading: true
+            loading: true,
+            city: {
+                lat: 0,
+                lon: 0
+            }
         }
 
         this.citys = [{
@@ -74,6 +78,11 @@ class MyComponent extends React.Component {
         console.log('%c' + 'CGTN', 'font-family: "courier new"; color:#000; font-size:24px; font-weight:bold; text-shadow:0 0 6px #22ff22;padding: 0 3px;')
     }
 
+    componentDidUpdate(prevProps, prevState) {
+
+        this.earth_3d.update(this.state.city)
+    }
+
     handleCityClick(e){
         let _me = this,
             ele = $(e.target),
@@ -81,7 +90,13 @@ class MyComponent extends React.Component {
             city = _me.citys[no]
 
         // _me.lookAtCamera(city)
-        _me.earth_3d.update(city)
+        _me.setState({
+            city: {
+                lat: city.lat,
+                lon: city.lon
+            }
+        })
+        // _me.earth_3d.update(city)
         console.log(city)
     }
     
