@@ -2,7 +2,7 @@
  * @Author: Nokey
  * @Date: 2017-02-24 14:16:31
  * @Last Modified by: Mr.B
- * @Last Modified time: 2018-06-08 18:54:54
+ * @Last Modified time: 2018-08-31 17:43:16
  */
 'use strict';
 
@@ -52,13 +52,13 @@ module.exports = {
     module: {
         loaders: LOADERS.concat([
             {
-                test: /\.(gif|png|jpg)\??.*$/,
+                test: /\.(gif|png|jpg|mp4)\??.*$/,
                 use: [
                     {
                         loader: 'url-loader',
                         options:{
                             limit: 1024,
-                            name: 'images/[hash].[ext]'
+                            name: 'media/[hash].[ext]'
                         }
                     }
                 ]

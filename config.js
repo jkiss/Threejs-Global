@@ -8,23 +8,16 @@
 
 module.exports = {
     // Deploy
-    public_path: '/2018/3D-demo'
+    public_path: '/demos'
     ,port: 8989
     ,plugin_url: ''
 
     // multi-pages
-    ,page1:{ // 你我新时代
-        title: 'Three.js global sample'
+    ,page1:{
+        title: 'Demos'
         ,desc: ''
         ,image: ''
         ,url: 'https://url/article/new-era-for-china.html'
         ,thumb: 'https://url/article/images/thumb.jpg'
-    }
-    ,page2:{ // 亲民外交
-        title: ''
-        ,desc: ''
-        ,image: ''
-        ,url: 'https://url/article/moments-on-world-stage.html'
-        ,thumb: 'https://url/article/images/page2/thumb.jpg'
     }
 }
