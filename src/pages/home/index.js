@@ -53,11 +53,11 @@ class MyComponent extends React.Component {
         return (
             <section className={_s('home')}>
 
-            {/* Demo-1 3D earth */}
-            <Earth />
-
             {/* Demo-2 canvas video */}
             <PixiVideo />
+
+            {/* Demo-1 3D earth */}
+            <Earth />
                 
             </section>
         );

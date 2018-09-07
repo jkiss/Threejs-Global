@@ -82,6 +82,8 @@ class Earth extends React.Component {
     render() {
         return (
             <div className={_s('Demo__earth_3d')}>
+                <h1 className={_s('h1')}>3D Earth</h1>
+
                 <div id="nk_earth_3d"></div>
 
                 <button id="city1" className={_s('btn', 'city1')} data-city="0" onClick={this.handleCityClick.bind(this)}>City 1</button>
