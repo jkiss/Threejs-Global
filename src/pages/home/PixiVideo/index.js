@@ -10,7 +10,9 @@
 import video_src from './media/body.mp4'
 import img_brush0 from './media/brushlayer-0.jpg'
 import img_brush1 from './media/brushlayer-1.jpg'
+import img_brush2 from './media/disp1.jpg'
 import img_mask from './media/mask1.jpg'
+import img_disp from './media/displace.png'
 
 // style
 import classNames from 'classnames/bind'
@@ -28,6 +30,7 @@ class PixiVideo extends React.Component {
         this.app = null
         this.loader = PIXI.loader
         this.assets = PIXI.loader.resources
+        this.c3d = null
     }
     
     componentDidMount() {
@@ -75,15 +78,15 @@ class PixiVideo extends React.Component {
         /**
          * 3D container
          */
-        let c3d = new PIXI.projection.Container3d()
+        _me.c3d = new PIXI.projection.Container3d()
         // c3d.position3d.y = -1 * _me.app.screen.height / 2
         // c3d.position3d.x = -1 * _me.app.screen.width / 2
-        c3d.pivot3d.x = _me.app.screen.width / 2
-        c3d.pivot3d.y = _me.app.screen.height / 2
+        _me.c3d.pivot3d.x = _me.app.screen.width / 2
+        _me.c3d.pivot3d.y = _me.app.screen.height / 2
         // MAKE CARDS LARGER:
         // c3d.scale3d.set(1.5)
-        console.log('c3d', c3d)
-        camera.addChild(c3d)
+        // console.log('c3d', _me.c3d)
+        camera.addChild(_me.c3d)
 
         // console.log(camera.euler)
 
@@ -95,14 +98,14 @@ class PixiVideo extends React.Component {
         videoSprite.width = _me.app.screen.width
         videoSprite.height = _me.app.screen.height
         // _me.app.stage.addChild(videoSprite)
-        c3d.addChild(videoSprite)
+        _me.c3d.addChild(videoSprite)
         
 
         /**
          * Add mask
          */
         _me.loader.add('mask', img_mask)
-        _me.loader.add('brush', img_brush0)
+        _me.loader.add('brush', img_brush2)
 
         _me.loader
             .on('progress', _me.handleProgress)
@@ -110,6 +113,8 @@ class PixiVideo extends React.Component {
             .load(_me.loaded.bind(this))
 
         // let tex_mask = PIXI.Texture.fromImage(img_mask)
+
+        console.log($('#pixi_video').offset().left)
     }
 
     loaded(){
@@ -130,18 +135,19 @@ class PixiVideo extends React.Component {
          * Add brush sprite
          */
         let disp_brush = new PIXI.Sprite(_me.assets.brush.texture)
-        disp_brush.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT
-        disp_brush.width = 200
-        disp_brush.height = 200
+        // disp_brush.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT
+        // disp_brush.width = 200
+        // disp_brush.height = 200
         _me.app.stage.addChild(disp_brush)
 
         let disp_filter = new PIXI.filters.DisplacementFilter(disp_brush)
         // disp_filter.padding = 10
         disp_filter.autoFit = false
-        disp_filter.scale.x = 20
-        disp_filter.scale.y = 20
+        disp_filter.scale.x = 50
+        disp_filter.scale.y = 50
         _me.app.stage.filters = [disp_filter]
-        _me.app.stage.filterArea = new PIXI.Rectangle(0,0,200,200)
+        // _me.app.stage.filters = [disp_filter]
+        // _me.app.stage.filterArea = new PIXI.Rectangle(0,0,200,200)
         console.log(_me.app.stage.filterArea)
         
         /**
@@ -153,6 +159,16 @@ class PixiVideo extends React.Component {
             // camera.euler.y += 0.01
             // c3d.euler.y += 0.01
             // camera.updateTransform()
+
+            // disp_brush.x += 1
+            // disp_brush.y += 1
+            if(disp_filter.scale.x > 0){
+                disp_filter.scale.x -= 0.1
+            }
+            if(disp_filter.scale.y > 0){
+                disp_filter.scale.y -= 0.1
+            }
+            
         })
     }
 
@@ -163,10 +179,19 @@ class PixiVideo extends React.Component {
     handleError(){
         console.error('Load resource error')
     }
+
+    handleMouse(e){
+        console.log(e.pageX)
+    }
     
     render() {
         return (
-            <div className={_s('Demo__pixi_video')} ref={_ele=>this.box = _ele}>
+            <div
+                id="pixi_video" 
+                className={_s('Demo__pixi_video')} 
+                ref={_ele=>this.box = _ele} 
+                onMouseMove={this.handleMouse}
+                >
                 
             </div>
         );
