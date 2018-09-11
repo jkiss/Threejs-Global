@@ -54,7 +54,9 @@ class MyComponent extends React.Component {
             <section className={_s('home')}>
 
             {/* Demo-2 canvas video */}
-            <PixiVideo />
+            <PixiVideo
+                video_w={800}
+                video_h={450} />
 
             {/* Demo-1 3D earth */}
             <Earth />
