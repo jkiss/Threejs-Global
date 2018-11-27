@@ -20,7 +20,7 @@ module.exports = {
         ,'CanvasRenderer': path.resolve(vendor_path, 'CanvasRenderer.js')
     },
 
-    extensions: ['.js', '.styl', '.css', '.jpg', '.gif', '.png'],
+    extensions: ['.js', '.styl', '.css', '.jpg', '.gif', '.png', '.mp3', '.mp4', '.json', '.csv'],
 
     modules: [
         path.resolve('./src/fonts'),

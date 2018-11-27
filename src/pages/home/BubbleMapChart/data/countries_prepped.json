@@ -1,0 +1,1673 @@
+[{
+    "continent": "North America",
+    "iso": "ABW",
+    "name": "Aruba",
+    "lng2": 177,
+    "lat2": 265,
+    "lng1": 175,
+    "lat1": 230
+}, {
+    "continent": "Asia",
+    "iso": "AFG",
+    "name": "Afghanistan",
+    "lng2": 567,
+    "lat2": 181,
+    "lng1": 543,
+    "lat1": 177
+}, {
+    "continent": "Africa",
+    "iso": "AGO",
+    "name": "Angola",
+    "lng2": 423,
+    "lat2": 332,
+    "lng1": 412,
+    "lat1": 318
+}, {
+    "continent": "Europe",
+    "iso": "ALB",
+    "name": "Albania",
+    "lng2": 440,
+    "lat2": 237,
+    "lng1": 418,
+    "lat1": 176
+}, {
+    "continent": "Europe",
+    "iso": "AND",
+    "name": "Andorra",
+    "lng2": 346,
+    "lat2": 231,
+    "lng1": 368,
+    "lat1": 171
+}, {
+    "continent": "Asia",
+    "iso": "ARE",
+    "name": "United Arab Emirates",
+    "lng2": 534,
+    "lat2": 216,
+    "lng1": 511,
+    "lat1": 222
+}, {
+    "continent": "South America",
+    "iso": "ARG",
+    "name": "Argentina",
+    "lng2": 193,
+    "lat2": 351,
+    "lng1": 191,
+    "lat1": 354
+}, {
+    "continent": "Asia",
+    "iso": "ARM",
+    "name": "Armenia",
+    "lng2": 533,
+    "lat2": 174,
+    "lng1": 484,
+    "lat1": 177
+}, {
+    "continent": "Oceania",
+    "iso": "ASM",
+    "name": "American Samoa",
+    "lng2": 797,
+    "lat2": 285,
+    "lng1": 794,
+    "lat1": 286
+}, {
+    "continent": "North America",
+    "iso": "ATG",
+    "name": "Antigua and Barb.",
+    "lng2": 201,
+    "lat2": 227,
+    "lng1": 197,
+    "lat1": 218
+}, {
+    "continent": "Oceania",
+    "iso": "AUS",
+    "name": "Australia",
+    "lng2": 721,
+    "lat2": 335,
+    "lng1": 725,
+    "lat1": 324
+}, {
+    "continent": "Europe",
+    "iso": "AUT",
+    "name": "Austria",
+    "lng2": 427,
+    "lat2": 165,
+    "lng1": 402,
+    "lat1": 158
+}, {
+    "continent": "Asia",
+    "iso": "AZE",
+    "name": "Azerbaijan",
+    "lng2": 544,
+    "lat2": 168,
+    "lng1": 491,
+    "lat1": 177
+}, {
+    "continent": "Africa",
+    "iso": "BDI",
+    "name": "Burundi",
+    "lng2": 436,
+    "lat2": 319,
+    "lng1": 444,
+    "lat1": 295
+}, {
+    "continent": "Europe",
+    "iso": "BEL",
+    "name": "Belgium",
+    "lng2": 347,
+    "lat2": 146,
+    "lng1": 376,
+    "lat1": 149
+}, {
+    "continent": "Africa",
+    "iso": "BEN",
+    "name": "Benin",
+    "lng2": 377,
+    "lat2": 287,
+    "lng1": 370,
+    "lat1": 258
+}, {
+    "continent": "Africa",
+    "iso": "BFA",
+    "name": "Burkina Faso",
+    "lng2": 360,
+    "lat2": 281,
+    "lng1": 360,
+    "lat1": 252
+}, {
+    "continent": "Asia",
+    "iso": "BGD",
+    "name": "Bangladesh",
+    "lng2": 601,
+    "lat2": 201,
+    "lng1": 606,
+    "lat1": 205
+}, {
+    "continent": "Europe",
+    "iso": "BGR",
+    "name": "Bulgaria",
+    "lng2": 477,
+    "lat2": 212,
+    "lng1": 432,
+    "lat1": 171
+}, {
+    "continent": "Asia",
+    "iso": "BHR",
+    "name": "Bahrain",
+    "lng2": 526,
+    "lat2": 231,
+    "lng1": 500,
+    "lat1": 215
+}, {
+    "continent": "North America",
+    "iso": "BHS",
+    "name": "Bahamas",
+    "lng2": 148,
+    "lat2": 179,
+    "lng1": 156,
+    "lat1": 193
+}, {
+    "continent": "Europe",
+    "iso": "BIH",
+    "name": "Bosnia and Herz.",
+    "lng2": 435,
+    "lat2": 215,
+    "lng1": 412,
+    "lat1": 167
+}, {
+    "continent": "Europe",
+    "iso": "BLR",
+    "name": "Belarus",
+    "lng2": 495,
+    "lat2": 116,
+    "lng1": 440,
+    "lat1": 141
+}, {
+    "continent": "North America",
+    "iso": "BLZ",
+    "name": "Belize",
+    "lng2": 108,
+    "lat2": 222,
+    "lng1": 125,
+    "lat1": 218
+}, {
+    "continent": "North America",
+    "iso": "BMU",
+    "name": "Bermuda",
+    "lng2": 179,
+    "lat2": 168,
+    "lng1": 189,
+    "lat1": 177
+}, {
+    "continent": "South America",
+    "iso": "BOL",
+    "name": "Bolivia",
+    "lng2": 196,
+    "lat2": 318,
+    "lng1": 189,
+    "lat1": 309
+}, {
+    "continent": "South America",
+    "iso": "BRA",
+    "name": "Brazil",
+    "lng2": 215,
+    "lat2": 314,
+    "lng1": 230,
+    "lat1": 296
+}, {
+    "continent": "North America",
+    "iso": "BRB",
+    "name": "Barbados",
+    "lng2": 207,
+    "lat2": 252,
+    "lng1": 203,
+    "lat1": 229
+}, {
+    "continent": "Asia",
+    "iso": "BRN",
+    "name": "Brunei",
+    "lng2": 667,
+    "lat2": 263,
+    "lng1": 672,
+    "lat1": 257
+}, {
+    "continent": "Asia",
+    "iso": "BTN",
+    "name": "Bhutan",
+    "lng2": 604,
+    "lat2": 193,
+    "lng1": 607,
+    "lat1": 195
+}, {
+    "continent": "Africa",
+    "iso": "BWA",
+    "name": "Botswana",
+    "lng2": 428,
+    "lat2": 344,
+    "lng1": 429,
+    "lat1": 345
+}, {
+    "continent": "Africa",
+    "iso": "CAF",
+    "name": "Central African Rep.",
+    "lng2": 426,
+    "lat2": 296,
+    "lng1": 420,
+    "lat1": 267
+}, {
+    "continent": "North America",
+    "iso": "CAN",
+    "name": "Canada",
+    "lng2": 83,
+    "lat2": 98,
+    "lng1": 80,
+    "lat1": 106
+}, {
+    "continent": "Europe",
+    "iso": "CHE",
+    "name": "Switzerland",
+    "lng2": 378,
+    "lat2": 195,
+    "lng1": 384,
+    "lat1": 160
+}, {
+    "continent": "South America",
+    "iso": "CHL",
+    "name": "Chile",
+    "lng2": 182,
+    "lat2": 362,
+    "lng1": 172,
+    "lat1": 360
+}, {
+    "continent": "Asia",
+    "iso": "CHN",
+    "name": "China",
+    "lng2": 630,
+    "lat2": 162,
+    "lng1": 650,
+    "lat1": 182
+}, {
+    "continent": "Africa",
+    "iso": "CIV",
+    "name": "C\u001a�te d'Ivoire",
+    "lng2": 352,
+    "lat2": 290,
+    "lng1": 349,
+    "lat1": 265
+}, {
+    "continent": "Africa",
+    "iso": "CMR",
+    "name": "Cameroon",
+    "lng2": 415,
+    "lat2": 298,
+    "lng1": 397,
+    "lat1": 273
+}, {
+    "continent": "Africa",
+    "iso": "COD",
+    "name": "Democratic Republic of the Congo",
+    "lng2": 427,
+    "lat2": 316,
+    "lng1": 427,
+    "lat1": 292
+}, {
+    "continent": "Africa",
+    "iso": "COG",
+    "name": "Republic of Congo",
+    "lng2": 422,
+    "lat2": 308,
+    "lng1": 407,
+    "lat1": 285
+}, {
+    "continent": "Oceania",
+    "iso": "COK",
+    "name": "Cook Is.",
+    "lng2": 808,
+    "lat2": 305,
+    "lng1": 806,
+    "lat1": 305
+}, {
+    "continent": "South America",
+    "iso": "COL",
+    "name": "Colombia",
+    "lng2": 175,
+    "lat2": 286,
+    "lng1": 167,
+    "lat1": 255
+}, {
+    "continent": "Africa",
+    "iso": "COM",
+    "name": "Comoros",
+    "lng2": 474,
+    "lat2": 328,
+    "lng1": 481,
+    "lat1": 317
+}, {
+    "continent": "Africa",
+    "iso": "CPV",
+    "name": "Cape Verde",
+    "lng2": 291,
+    "lat2": 271,
+    "lng1": 300,
+    "lat1": 245
+}, {
+    "continent": "North America",
+    "iso": "CRI",
+    "name": "Costa Rica",
+    "lng2": 133,
+    "lat2": 258,
+    "lng1": 137,
+    "lat1": 237
+}, {
+    "continent": "North America",
+    "iso": "CUB",
+    "name": "Cuba",
+    "lng2": 154,
+    "lat2": 199,
+    "lng1": 154,
+    "lat1": 207
+}, {
+    "continent": "North America",
+    "iso": "CYM",
+    "name": "Cayman Is.",
+    "lng2": 130,
+    "lat2": 227,
+    "lng1": 145,
+    "lat1": 212
+}, {
+    "continent": "Asia",
+    "iso": "CYP",
+    "name": "Cyprus",
+    "lng2": 489,
+    "lat2": 236,
+    "lng1": 453,
+    "lat1": 192
+}, {
+    "continent": "Europe",
+    "iso": "CZE",
+    "name": "Czech Rep.",
+    "lng2": 432,
+    "lat2": 131,
+    "lng1": 405,
+    "lat1": 151
+}, {
+    "continent": "Africa",
+    "iso": "DJI",
+    "name": "Djibouti",
+    "lng2": 490,
+    "lat2": 271,
+    "lng1": 478,
+    "lat1": 254
+}, {
+    "continent": "North America",
+    "iso": "DMA",
+    "name": "Dominica",
+    "lng2": 202,
+    "lat2": 240,
+    "lng1": 198,
+    "lat1": 223
+}, {
+    "continent": "Europe",
+    "iso": "DNK",
+    "name": "Denmark",
+    "lng2": 394,
+    "lat2": 78,
+    "lng1": 389,
+    "lat1": 134
+}, {
+    "continent": "North America",
+    "iso": "DOM",
+    "name": "Dominican Rep.",
+    "lng2": 178,
+    "lat2": 225,
+    "lng1": 173,
+    "lat1": 213
+}, {
+    "continent": "Africa",
+    "iso": "DZA",
+    "name": "Algeria",
+    "lng2": 367,
+    "lat2": 272,
+    "lng1": 373,
+    "lat1": 211
+}, {
+    "continent": "South America",
+    "iso": "ECU",
+    "name": "Ecuador",
+    "lng2": 169,
+    "lat2": 294,
+    "lng1": 152,
+    "lat1": 267
+}, {
+    "continent": "Africa",
+    "iso": "EGY",
+    "name": "Egypt",
+    "lng2": 459,
+    "lat2": 270,
+    "lng1": 443,
+    "lat1": 214
+}, {
+    "continent": "Africa",
+    "iso": "ERI",
+    "name": "Eritrea",
+    "lng2": 479,
+    "lat2": 268,
+    "lng1": 467,
+    "lat1": 243
+}, {
+    "continent": "Europe",
+    "iso": "ESP",
+    "name": "Spain",
+    "lng2": 323,
+    "lat2": 231,
+    "lng1": 352,
+    "lat1": 178
+}, {
+    "continent": "Europe",
+    "iso": "EST",
+    "name": "Estonia",
+    "lng2": 478,
+    "lat2": 88,
+    "lng1": 433,
+    "lat1": 127
+}, {
+    "continent": "Africa",
+    "iso": "ETH",
+    "name": "Ethiopia",
+    "lng2": 477,
+    "lat2": 280,
+    "lng1": 469,
+    "lat1": 264
+}, {
+    "continent": "Europe",
+    "iso": "FIN",
+    "name": "Finland",
+    "lng2": 465,
+    "lat2": 79,
+    "lng1": 426,
+    "lat1": 115
+}, {
+    "continent": "Oceania",
+    "iso": "FJI",
+    "name": "Fiji",
+    "lng2": 781,
+    "lat2": 297,
+    "lng1": 782,
+    "lat1": 296
+}, {
+    "continent": "Europe",
+    "iso": "FRA",
+    "name": "France",
+    "lng2": 338,
+    "lat2": 185,
+    "lng1": 370,
+    "lat1": 160
+}, {
+    "continent": "Oceania",
+    "iso": "FSM",
+    "name": "Micronesia",
+    "lng2": 761,
+    "lat2": 228,
+    "lng1": 761,
+    "lat1": 229
+}, {
+    "continent": "Africa",
+    "iso": "GAB",
+    "name": "Gabon",
+    "lng2": 413,
+    "lat2": 310,
+    "lng1": 394,
+    "lat1": 287
+}, {
+    "continent": "Europe",
+    "iso": "GBR",
+    "name": "United Kingdom",
+    "lng2": 315,
+    "lat2": 140,
+    "lng1": 359,
+    "lat1": 144
+}, {
+    "continent": "Asia",
+    "iso": "GEO",
+    "name": "Georgia",
+    "lng2": 533,
+    "lat2": 157,
+    "lng1": 482,
+    "lat1": 173
+}, {
+    "continent": "Africa",
+    "iso": "GHA",
+    "name": "Ghana",
+    "lng2": 363,
+    "lat2": 291,
+    "lng1": 361,
+    "lat1": 265
+}, {
+    "continent": "Africa",
+    "iso": "GIN",
+    "name": "Guinea",
+    "lng2": 335,
+    "lat2": 281,
+    "lng1": 337,
+    "lat1": 257
+}, {
+    "continent": "Africa",
+    "iso": "GMB",
+    "name": "Gambia",
+    "lng2": 320,
+    "lat2": 276,
+    "lng1": 320,
+    "lat1": 250
+}, {
+    "continent": "Africa",
+    "iso": "GNB",
+    "name": "Guinea-Bissau",
+    "lng2": 324,
+    "lat2": 281,
+    "lng1": 323,
+    "lat1": 253
+}, {
+    "continent": "Africa",
+    "iso": "GNQ",
+    "name": "Eq. Guinea",
+    "lng2": 411,
+    "lat2": 304,
+    "lng1": 392,
+    "lat1": 281
+}, {
+    "continent": "Europe",
+    "iso": "GRC",
+    "name": "Greece",
+    "lng2": 449,
+    "lat2": 245,
+    "lng1": 423,
+    "lat1": 180
+}, {
+    "continent": "North America",
+    "iso": "GRD",
+    "name": "Grenada",
+    "lng2": 196,
+    "lat2": 262,
+    "lng1": 198,
+    "lat1": 231
+}, {
+    "continent": "North America",
+    "iso": "GTM",
+    "name": "Guatemala",
+    "lng2": 104,
+    "lat2": 227,
+    "lng1": 120,
+    "lat1": 224
+}, {
+    "continent": "Oceania",
+    "iso": "GUM",
+    "name": "Guam",
+    "lng2": 746,
+    "lat2": 225,
+    "lng1": 746,
+    "lat1": 222
+}, {
+    "continent": "South America",
+    "iso": "GUY",
+    "name": "Guyana",
+    "lng2": 197,
+    "lat2": 287,
+    "lng1": 205,
+    "lat1": 249
+}, {
+    "continent": "Asia",
+    "iso": "HKG",
+    "name": "Hong Kong",
+    "lng2": 656,
+    "lat2": 209,
+    "lng1": 671,
+    "lat1": 209
+}, {
+    "continent": "North America",
+    "iso": "HND",
+    "name": "Honduras",
+    "lng2": 118,
+    "lat2": 236,
+    "lng1": 130,
+    "lat1": 224
+}, {
+    "continent": "Europe",
+    "iso": "HRV",
+    "name": "Croatia",
+    "lng2": 432,
+    "lat2": 199,
+    "lng1": 408,
+    "lat1": 162
+}, {
+    "continent": "North America",
+    "iso": "HTI",
+    "name": "Haiti",
+    "lng2": 172,
+    "lat2": 238,
+    "lng1": 169,
+    "lat1": 212
+}, {
+    "continent": "Europe",
+    "iso": "HUN",
+    "name": "Hungary",
+    "lng2": 451,
+    "lat2": 169,
+    "lng1": 416,
+    "lat1": 159
+}, {
+    "continent": "Asia",
+    "iso": "IDN",
+    "name": "Indonesia",
+    "lng2": 659,
+    "lat2": 280,
+    "lng1": 659,
+    "lat1": 280
+}, {
+    "continent": "Asia",
+    "iso": "IND",
+    "name": "India",
+    "lng2": 582,
+    "lat2": 202,
+    "lng1": 576,
+    "lat1": 209
+}, {
+    "continent": "Europe",
+    "iso": "IRL",
+    "name": "Ireland",
+    "lng2": 289,
+    "lat2": 136,
+    "lng1": 342,
+    "lat1": 142
+}, {
+    "continent": "Asia",
+    "iso": "IRN",
+    "name": "Iran",
+    "lng2": 538,
+    "lat2": 195,
+    "lng1": 513,
+    "lat1": 200
+}, {
+    "continent": "Asia",
+    "iso": "IRQ",
+    "name": "Iraq",
+    "lng2": 516,
+    "lat2": 226,
+    "lng1": 480,
+    "lat1": 196
+}, {
+    "continent": "Europe",
+    "iso": "ISL",
+    "name": "Iceland",
+    "lng2": 248,
+    "lat2": 72,
+    "lng1": 281,
+    "lat1": 90
+}, {
+    "continent": "Asia",
+    "iso": "ISR",
+    "name": "Israel",
+    "lng2": 484,
+    "lat2": 252,
+    "lng1": 458,
+    "lat1": 202
+}, {
+    "continent": "Europe",
+    "iso": "ITA",
+    "name": "Italy",
+    "lng2": 402,
+    "lat2": 230,
+    "lng1": 395,
+    "lat1": 168
+}, {
+    "continent": "North America",
+    "iso": "JAM",
+    "name": "Jamaica",
+    "lng2": 153,
+    "lat2": 240,
+    "lng1": 155,
+    "lat1": 215
+}, {
+    "continent": "Asia",
+    "iso": "JOR",
+    "name": "Jordan",
+    "lng2": 498,
+    "lat2": 245,
+    "lng1": 462,
+    "lat1": 203
+}, {
+    "continent": "Asia",
+    "iso": "JPN",
+    "name": "Japan",
+    "lng2": 751,
+    "lat2": 153,
+    "lng1": 747,
+    "lat1": 161
+}, {
+    "continent": "Asia",
+    "iso": "KAZ",
+    "name": "Kazakhstan",
+    "lng2": 577,
+    "lat2": 136,
+    "lng1": 551,
+    "lat1": 139
+}, {
+    "continent": "Africa",
+    "iso": "KEN",
+    "name": "Kenya",
+    "lng2": 462,
+    "lat2": 303,
+    "lng1": 466,
+    "lat1": 284
+}, {
+    "continent": "Asia",
+    "iso": "KGZ",
+    "name": "Kyrgyzstan",
+    "lng2": 578,
+    "lat2": 152,
+    "lng1": 564,
+    "lat1": 157
+}, {
+    "continent": "Asia",
+    "iso": "KHM",
+    "name": "Cambodia",
+    "lng2": 638,
+    "lat2": 234,
+    "lng1": 645,
+    "lat1": 236
+}, {
+    "continent": "Oceania",
+    "iso": "KIR",
+    "name": "Kiribati",
+    "lng2": 810,
+    "lat2": 240,
+    "lng1": 808,
+    "lat1": 243
+}, {
+    "continent": "North America",
+    "iso": "KNA",
+    "name": "Saint Kitts and Nevis",
+    "lng2": 197,
+    "lat2": 224,
+    "lng1": 195,
+    "lat1": 217
+}, {
+    "continent": "Asia",
+    "iso": "KOR",
+    "name": "Republic of Korea",
+    "lng2": 701,
+    "lat2": 149,
+    "lng1": 709,
+    "lat1": 163
+}, {
+    "continent": "Asia",
+    "iso": "KWT",
+    "name": "Kuwait",
+    "lng2": 519,
+    "lat2": 229,
+    "lng1": 491,
+    "lat1": 206
+}, {
+    "continent": "Asia",
+    "iso": "LAO",
+    "name": "Laos",
+    "lng2": 629,
+    "lat2": 212,
+    "lng1": 640,
+    "lat1": 217
+}, {
+    "continent": "Asia",
+    "iso": "LBN",
+    "name": "Lebanon",
+    "lng2": 500,
+    "lat2": 233,
+    "lng1": 461,
+    "lat1": 194
+}, {
+    "continent": "Africa",
+    "iso": "LBR",
+    "name": "Liberia",
+    "lng2": 343,
+    "lat2": 292,
+    "lng1": 339,
+    "lat1": 268
+}, {
+    "continent": "Africa",
+    "iso": "LBY",
+    "name": "Libya",
+    "lng2": 419,
+    "lat2": 280,
+    "lng1": 412,
+    "lat1": 214
+}, {
+    "continent": "North America",
+    "iso": "LCA",
+    "name": "Saint Lucia",
+    "lng2": 201,
+    "lat2": 249,
+    "lng1": 199,
+    "lat1": 227
+}, {
+    "continent": "Europe",
+    "iso": "LIE",
+    "name": "Liechtenstein",
+    "lng2": 392,
+    "lat2": 191,
+    "lng1": 389,
+    "lat1": 158
+}, {
+    "continent": "Asia",
+    "iso": "LKA",
+    "name": "Sri Lanka",
+    "lng2": 584,
+    "lat2": 239,
+    "lng1": 581,
+    "lat1": 249
+}, {
+    "continent": "Africa",
+    "iso": "LSO",
+    "name": "Lesotho",
+    "lng2": 435,
+    "lat2": 362,
+    "lng1": 440,
+    "lat1": 365
+}, {
+    "continent": "Europe",
+    "iso": "LTU",
+    "name": "Lithuania",
+    "lng2": 473,
+    "lat2": 102,
+    "lng1": 429,
+    "lat1": 137
+}, {
+    "continent": "Europe",
+    "iso": "LUX",
+    "name": "Luxembourg",
+    "lng2": 359,
+    "lat2": 160,
+    "lng1": 380,
+    "lat1": 152
+}, {
+    "continent": "Europe",
+    "iso": "LVA",
+    "name": "Latvia",
+    "lng2": 473,
+    "lat2": 92,
+    "lng1": 432,
+    "lat1": 132
+}, {
+    "continent": "Africa",
+    "iso": "MAR",
+    "name": "Morocco",
+    "lng2": 335,
+    "lat2": 262,
+    "lng1": 344,
+    "lat1": 200
+}, {
+    "continent": "Europe",
+    "iso": "MCO",
+    "name": "Monaco",
+    "lng2": 373,
+    "lat2": 237,
+    "lng1": 384,
+    "lat1": 168
+}, {
+    "continent": "Europe",
+    "iso": "MDA",
+    "name": "Moldova",
+    "lng2": 503,
+    "lat2": 164,
+    "lng1": 441,
+    "lat1": 158
+}, {
+    "continent": "Africa",
+    "iso": "MDG",
+    "name": "Madagascar",
+    "lng2": 483,
+    "lat2": 342,
+    "lng1": 490,
+    "lat1": 336
+}, {
+    "continent": "Asia",
+    "iso": "MDV",
+    "name": "Maldives",
+    "lng2": 569,
+    "lat2": 253,
+    "lng1": 562,
+    "lat1": 258
+}, {
+    "continent": "North America",
+    "iso": "MEX",
+    "name": "Mexico",
+    "lng2": 79,
+    "lat2": 195,
+    "lng1": 88,
+    "lat1": 200
+}, {
+    "continent": "Oceania",
+    "iso": "MHL",
+    "name": "Marshall Is.",
+    "lng2": 775,
+    "lat2": 225,
+    "lng1": 775,
+    "lat1": 229
+}, {
+    "continent": "Europe",
+    "iso": "MKD",
+    "name": "Macedonia",
+    "lng2": 452,
+    "lat2": 229,
+    "lng1": 422,
+    "lat1": 174
+}, {
+    "continent": "Africa",
+    "iso": "MLI",
+    "name": "Mali",
+    "lng2": 353,
+    "lat2": 277,
+    "lng1": 358,
+    "lat1": 235
+}, {
+    "continent": "Europe",
+    "iso": "MLT",
+    "name": "Malta",
+    "lng2": 410,
+    "lat2": 271,
+    "lng1": 403,
+    "lat1": 189
+}, {
+    "continent": "Asia",
+    "iso": "MMR",
+    "name": "Myanmar",
+    "lng2": 615,
+    "lat2": 205,
+    "lng1": 622,
+    "lat1": 211
+}, {
+    "continent": "Europe",
+    "iso": "MNE",
+    "name": "Montenegro",
+    "lng2": 438,
+    "lat2": 225,
+    "lng1": 415,
+    "lat1": 170
+}, {
+    "continent": "Asia",
+    "iso": "MNG",
+    "name": "Mongolia",
+    "lng2": 638,
+    "lat2": 126,
+    "lng1": 644,
+    "lat1": 146
+}, {
+    "continent": "Africa",
+    "iso": "MOZ",
+    "name": "Mozambique",
+    "lng2": 455,
+    "lat2": 332,
+    "lng1": 466,
+    "lat1": 323
+}, {
+    "continent": "Africa",
+    "iso": "MRT",
+    "name": "Mauritania",
+    "lng2": 339,
+    "lat2": 273,
+    "lng1": 338,
+    "lat1": 233
+}, {
+    "continent": "Africa",
+    "iso": "MUS",
+    "name": "Mauritius",
+    "lng2": 518,
+    "lat2": 343,
+    "lng1": 519,
+    "lat1": 340
+}, {
+    "continent": "Africa",
+    "iso": "MWI",
+    "name": "Malawi",
+    "lng2": 446,
+    "lat2": 330,
+    "lng1": 454,
+    "lat1": 322
+}, {
+    "continent": "Asia",
+    "iso": "MYS",
+    "name": "Malaysia",
+    "lng2": 629,
+    "lat2": 262,
+    "lng1": 629,
+    "lat1": 262
+}, {
+    "continent": "Africa",
+    "iso": "NAM",
+    "name": "Namibia",
+    "lng2": 420,
+    "lat2": 341,
+    "lng1": 410,
+    "lat1": 341
+}, {
+    "continent": "Africa",
+    "iso": "NER",
+    "name": "Niger",
+    "lng2": 398,
+    "lat2": 284,
+    "lng1": 389,
+    "lat1": 239
+}, {
+    "continent": "Africa",
+    "iso": "NGA",
+    "name": "Nigeria",
+    "lng2": 396,
+    "lat2": 292,
+    "lng1": 385,
+    "lat1": 260
+}, {
+    "continent": "North America",
+    "iso": "NIC",
+    "name": "Nicaragua",
+    "lng2": 126,
+    "lat2": 246,
+    "lng1": 135,
+    "lat1": 230
+}, {
+    "continent": "Europe",
+    "iso": "NLD",
+    "name": "Netherlands",
+    "lng2": 359,
+    "lat2": 106,
+    "lng1": 379,
+    "lat1": 144
+}, {
+    "continent": "Europe",
+    "iso": "NOR",
+    "name": "Norway",
+    "lng2": 401,
+    "lat2": 67,
+    "lng1": 388,
+    "lat1": 121
+}, {
+    "continent": "Asia",
+    "iso": "NPL",
+    "name": "Nepal",
+    "lng2": 587,
+    "lat2": 195,
+    "lng1": 589,
+    "lat1": 193
+}, {
+    "continent": "Oceania",
+    "iso": "NRU",
+    "name": "Nauru",
+    "lng2": 770,
+    "lat2": 249,
+    "lng1": 770,
+    "lat1": 249
+}, {
+    "continent": "Oceania",
+    "iso": "NZL",
+    "name": "New Zealand",
+    "lng2": 771,
+    "lat2": 361,
+    "lng1": 773,
+    "lat1": 359
+}, {
+    "continent": "Asia",
+    "iso": "OMN",
+    "name": "Oman",
+    "lng2": 541,
+    "lat2": 212,
+    "lng1": 518,
+    "lat1": 226
+}, {
+    "continent": "Asia",
+    "iso": "PAK",
+    "name": "Pakistan",
+    "lng2": 569,
+    "lat2": 189,
+    "lng1": 549,
+    "lat1": 190
+}, {
+    "continent": "North America",
+    "iso": "PAN",
+    "name": "Panama",
+    "lng2": 149,
+    "lat2": 270,
+    "lng1": 145,
+    "lat1": 242
+}, {
+    "continent": "South America",
+    "iso": "PER",
+    "name": "Peru",
+    "lng2": 176,
+    "lat2": 300,
+    "lng1": 167,
+    "lat1": 299
+}, {
+    "continent": "Asia",
+    "iso": "PHL",
+    "name": "Philippines",
+    "lng2": 683,
+    "lat2": 231,
+    "lng1": 691,
+    "lat1": 224
+}, {
+    "continent": "Oceania",
+    "iso": "PLW",
+    "name": "Palau",
+    "lng2": 723,
+    "lat2": 243,
+    "lng1": 726,
+    "lat1": 238
+}, {
+    "continent": "Oceania",
+    "iso": "PNG",
+    "name": "Papua New Guinea",
+    "lng2": 742,
+    "lat2": 278,
+    "lng1": 744,
+    "lat1": 274
+}, {
+    "continent": "Europe",
+    "iso": "POL",
+    "name": "Poland",
+    "lng2": 454,
+    "lat2": 114,
+    "lng1": 416,
+    "lat1": 146
+}, {
+    "continent": "North America",
+    "iso": "PRI",
+    "name": "Puerto Rico",
+    "lng2": 184,
+    "lat2": 223,
+    "lng1": 185,
+    "lat1": 215
+}, {
+    "continent": "Asia",
+    "iso": "PRK",
+    "name": "Dem. Rep. Korea",
+    "lng2": 690,
+    "lat2": 127,
+    "lng1": 704,
+    "lat1": 162
+}, {
+    "continent": "Europe",
+    "iso": "PRT",
+    "name": "Portugal",
+    "lng2": 300,
+    "lat2": 223,
+    "lng1": 341,
+    "lat1": 188
+}, {
+    "continent": "South America",
+    "iso": "PRY",
+    "name": "Paraguay",
+    "lng2": 201,
+    "lat2": 327,
+    "lng1": 202,
+    "lat1": 322
+}, {
+    "continent": "Asia",
+    "iso": "PSX",
+    "name": "Palestine",
+    "lng2": 493,
+    "lat2": 245,
+    "lng1": 459,
+    "lat1": 199
+}, {
+    "continent": "Asia",
+    "iso": "QAT",
+    "name": "Qatar",
+    "lng2": 526,
+    "lat2": 233,
+    "lng1": 502,
+    "lat1": 217
+}, {
+    "continent": "Europe",
+    "iso": "ROU",
+    "name": "Romania",
+    "lng2": 483,
+    "lat2": 178,
+    "lng1": 431,
+    "lat1": 162
+}, {
+    "continent": "Europe",
+    "iso": "RUS",
+    "name": "Russia",
+    "lng2": 542,
+    "lat2": 104,
+    "lng1": 542,
+    "lat1": 104
+}, {
+    "continent": "Africa",
+    "iso": "RWA",
+    "name": "Rwanda",
+    "lng2": 435,
+    "lat2": 312,
+    "lng1": 444,
+    "lat1": 291
+}, {
+    "continent": "Asia",
+    "iso": "SAU",
+    "name": "Saudi Arabia",
+    "lng2": 516,
+    "lat2": 240,
+    "lng1": 484,
+    "lat1": 222
+}, {
+    "continent": "Africa",
+    "iso": "SDN",
+    "name": "Sudan",
+    "lng2": 445,
+    "lat2": 281,
+    "lng1": 443,
+    "lat1": 242
+}, {
+    "continent": "Africa",
+    "iso": "SEN",
+    "name": "Senegal",
+    "lng2": 323,
+    "lat2": 273,
+    "lng1": 324,
+    "lat1": 245
+}, {
+    "continent": "Asia",
+    "iso": "SGP",
+    "name": "Singapore",
+    "lng2": 639,
+    "lat2": 266,
+    "lng1": 643,
+    "lat1": 266
+}, {
+    "continent": "Oceania",
+    "iso": "SLB",
+    "name": "Solomon Is.",
+    "lng2": 760,
+    "lat2": 271,
+    "lng1": 762,
+    "lat1": 270
+}, {
+    "continent": "Africa",
+    "iso": "SLE",
+    "name": "Sierra Leone",
+    "lng2": 335,
+    "lat2": 287,
+    "lng1": 332,
+    "lat1": 263
+}, {
+    "continent": "North America",
+    "iso": "SLV",
+    "name": "El Salvador",
+    "lng2": 113,
+    "lat2": 237,
+    "lng1": 124,
+    "lat1": 227
+}, {
+    "continent": "Europe",
+    "iso": "SMR",
+    "name": "San Marino",
+    "lng2": 411,
+    "lat2": 221,
+    "lng1": 397,
+    "lat1": 167
+}, {
+    "continent": "Africa",
+    "iso": "SOM",
+    "name": "Somalia",
+    "lng2": 490,
+    "lat2": 289,
+    "lng1": 482,
+    "lat1": 277
+}, {
+    "continent": "Europe",
+    "iso": "SRB",
+    "name": "Serbia",
+    "lng2": 454,
+    "lat2": 204,
+    "lng1": 420,
+    "lat1": 167
+}, {
+    "continent": "Africa",
+    "iso": "STP",
+    "name": "Sao Tome and Principe",
+    "lng2": 396,
+    "lat2": 307,
+    "lng1": 382,
+    "lat1": 285
+}, {
+    "continent": "South America",
+    "iso": "SUR",
+    "name": "Suriname",
+    "lng2": 205,
+    "lat2": 289,
+    "lng1": 213,
+    "lat1": 253
+}, {
+    "continent": "Europe",
+    "iso": "SVK",
+    "name": "Slovakia",
+    "lng2": 454,
+    "lat2": 140,
+    "lng1": 416,
+    "lat1": 154
+}, {
+    "continent": "Europe",
+    "iso": "SVN",
+    "name": "Slovenia",
+    "lng2": 420,
+    "lat2": 193,
+    "lng1": 404,
+    "lat1": 162
+}, {
+    "continent": "Europe",
+    "iso": "SWE",
+    "name": "Sweden",
+    "lng2": 424,
+    "lat2": 72,
+    "lng1": 408,
+    "lat1": 113
+}, {
+    "continent": "Africa",
+    "iso": "SWZ",
+    "name": "Swaziland",
+    "lng2": 443,
+    "lat2": 354,
+    "lng1": 449,
+    "lat1": 357
+}, {
+    "continent": "Africa",
+    "iso": "SYC",
+    "name": "Seychelles",
+    "lng2": 516,
+    "lat2": 304,
+    "lng1": 513,
+    "lat1": 298
+}, {
+    "continent": "Asia",
+    "iso": "SYR",
+    "name": "Syria",
+    "lng2": 507,
+    "lat2": 226,
+    "lng1": 467,
+    "lat1": 191
+}, {
+    "continent": "Africa",
+    "iso": "TCD",
+    "name": "Chad",
+    "lng2": 423,
+    "lat2": 287,
+    "lng1": 414,
+    "lat1": 245
+}, {
+    "continent": "Africa",
+    "iso": "TGO",
+    "name": "Togo",
+    "lng2": 372,
+    "lat2": 291,
+    "lng1": 367,
+    "lat1": 262
+}, {
+    "continent": "Asia",
+    "iso": "THA",
+    "name": "Thailand",
+    "lng2": 629,
+    "lat2": 223,
+    "lng1": 636,
+    "lat1": 228
+}, {
+    "continent": "Asia",
+    "iso": "TJK",
+    "name": "Tajikistan",
+    "lng2": 572,
+    "lat2": 166,
+    "lng1": 559,
+    "lat1": 167
+}, {
+    "continent": "Asia",
+    "iso": "TKM",
+    "name": "Turkmenistan",
+    "lng2": 559,
+    "lat2": 168,
+    "lng1": 522,
+    "lat1": 178
+}, {
+    "continent": "Asia",
+    "iso": "TLS",
+    "name": "Timor-Leste",
+    "lng2": 700,
+    "lat2": 296,
+    "lng1": 703,
+    "lat1": 293
+}, {
+    "continent": "Oceania",
+    "iso": "TON",
+    "name": "Tonga",
+    "lng2": 790,
+    "lat2": 306,
+    "lng1": 789,
+    "lat1": 305
+}, {
+    "continent": "North America",
+    "iso": "TTO",
+    "name": "Trinidad and Tobago",
+    "lng2": 197,
+    "lat2": 271,
+    "lng1": 199,
+    "lat1": 236
+}, {
+    "continent": "Africa",
+    "iso": "TUN",
+    "name": "Tunisia",
+    "lng2": 382,
+    "lat2": 271,
+    "lng1": 388,
+    "lat1": 195
+}, {
+    "continent": "Asia",
+    "iso": "TUR",
+    "name": "Turkey",
+    "lng2": 514,
+    "lat2": 209,
+    "lng1": 457,
+    "lat1": 180
+}, {
+    "continent": "Oceania",
+    "iso": "TUV",
+    "name": "Tuvalu",
+    "lng2": 784,
+    "lat2": 270,
+    "lng1": 783,
+    "lat1": 271
+}, {
+    "continent": "Asia",
+    "iso": "TWN",
+    "name": "Taiwan",
+    "lng2": 679,
+    "lat2": 211,
+    "lng1": 690,
+    "lat1": 206
+}, {
+    "continent": "Africa",
+    "iso": "TZA",
+    "name": "Tanzania",
+    "lng2": 446,
+    "lat2": 321,
+    "lng1": 457,
+    "lat1": 301
+}, {
+    "continent": "Africa",
+    "iso": "UGA",
+    "name": "Uganda",
+    "lng2": 441,
+    "lat2": 304,
+    "lng1": 451,
+    "lat1": 283
+}, {
+    "continent": "Europe",
+    "iso": "UKR",
+    "name": "Ukraine",
+    "lng2": 518,
+    "lat2": 148,
+    "lng1": 450,
+    "lat1": 153
+}, {
+    "continent": "South America",
+    "iso": "URY",
+    "name": "Uruguay",
+    "lng2": 203,
+    "lat2": 343,
+    "lng1": 213,
+    "lat1": 353
+}, {
+    "continent": "North America",
+    "iso": "USA",
+    "name": "United States",
+    "lng2": 82,
+    "lat2": 142,
+    "lng1": 102,
+    "lat1": 157
+}, {
+    "continent": "Asia",
+    "iso": "UZB",
+    "name": "Uzbekistan",
+    "lng2": 566,
+    "lat2": 157,
+    "lng1": 536,
+    "lat1": 157
+}, {
+    "continent": "North America",
+    "iso": "VCT",
+    "name": "St. Vin. and Gren.",
+    "lng2": 198,
+    "lat2": 254,
+    "lng1": 199,
+    "lat1": 228
+}, {
+    "continent": "South America",
+    "iso": "VEN",
+    "name": "Venezuela",
+    "lng2": 188,
+    "lat2": 283,
+    "lng1": 190,
+    "lat1": 245
+}, {
+    "continent": "North America",
+    "iso": "VGB",
+    "name": "British Virgin Is.",
+    "lng2": 190,
+    "lat2": 217,
+    "lng1": 190,
+    "lat1": 214
+}, {
+    "continent": "North America",
+    "iso": "VIR",
+    "name": "U.S. Virgin Is.",
+    "lng2": 190,
+    "lat2": 225,
+    "lng1": 189,
+    "lat1": 216
+}, {
+    "continent": "Asia",
+    "iso": "VNM",
+    "name": "Vietnam",
+    "lng2": 635,
+    "lat2": 209,
+    "lng1": 648,
+    "lat1": 211
+}, {
+    "continent": "Oceania",
+    "iso": "VUT",
+    "name": "Vanuatu",
+    "lng2": 769,
+    "lat2": 290,
+    "lng1": 770,
+    "lat1": 289
+}, {
+    "continent": "Oceania",
+    "iso": "WSM",
+    "name": "Samoa",
+    "lng2": 793,
+    "lat2": 282,
+    "lng1": 792,
+    "lat1": 285
+}, {
+    "continent": "Asia",
+    "iso": "YEM",
+    "name": "Yemen",
+    "lng2": 505,
+    "lat2": 254,
+    "lng1": 487,
+    "lat1": 244
+}, {
+    "continent": "Africa",
+    "iso": "ZAF",
+    "name": "South Africa",
+    "lng2": 425,
+    "lat2": 365,
+    "lng1": 426,
+    "lat1": 368
+}, {
+    "continent": "Africa",
+    "iso": "ZMB",
+    "name": "Zambia",
+    "lng2": 430,
+    "lat2": 331,
+    "lng1": 435,
+    "lat1": 325
+}, {
+    "continent": "Africa",
+    "iso": "ZWE",
+    "name": "Zimbabwe",
+    "lng2": 438,
+    "lat2": 339,
+    "lng1": 444,
+    "lat1": 337
+}, {
+    "continent": "Europe",
+    "iso": "DEU",
+    "name": "Germany",
+    "lng2": 394,
+    "lat2": 141,
+    "lng1": 386,
+    "lat1": 148
+}, {
+    "continent": "Europe",
+    "iso": "DDR",
+    "name": "East Germany",
+    "lng2": 424,
+    "lat2": 112,
+    "lng1": 397,
+    "lat1": 145
+}, {
+    "continent": "Europe",
+    "iso": "SAA",
+    "name": "Saarland",
+    "lng2": 368,
+    "lat2": 164,
+    "lng1": 383,
+    "lat1": 152
+}, {
+    "continent": "North America",
+    "iso": "NFL",
+    "name": "Newfoundland",
+    "lng2": 134,
+    "lat2": 108,
+    "lng1": 146,
+    "lat1": 116
+}, {
+    "continent": "Asia",
+    "iso": "NBO",
+    "name": "N. Borneo",
+    "lng2": 669,
+    "lat2": 252,
+    "lng1": 675,
+    "lat1": 250
+}, {
+    "continent": "Asia",
+    "iso": "YMD",
+    "name": "S. Yemen",
+    "lng2": 519,
+    "lat2": 255,
+    "lng1": 504,
+    "lat1": 248
+}]

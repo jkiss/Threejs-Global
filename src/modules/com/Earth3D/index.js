@@ -138,10 +138,10 @@ class Earth3D{
             antialias: true,
             alpha: true
         })
-        _me.renderer.setPixelRatio( window.devicePixelRatio )
-        _me.renderer.setSize( opt.r_width, opt.r_height )
+        _me.renderer.setPixelRatio(window.devicePixelRatio)
+        _me.renderer.setSize(opt.r_width, opt.r_height)
         _me.renderer.setClearColor(0xffffff, 0)
-        _me.container.appendChild( _me.renderer.domElement )
+        _me.container.appendChild(_me.renderer.domElement)
 
         // debug
         _me.debug = opt.debug || false

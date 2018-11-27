@@ -2,7 +2,7 @@
  * @Author: Nokey 
  * @Date: 2017-07-13 18:03:17 
  * @Last Modified by: Mr.B
- * @Last Modified time: 2018-08-31 16:27:18
+ * @Last Modified time: 2018-11-21 11:16:07
  */
 'use strict';
 
@@ -23,6 +23,7 @@ let _s = classNames.bind(styles)
 // com
 import Earth from './Earth'
 import PixiVideo from './PixiVideo'
+import BubbleMapChart from './BubbleMapChart'
 
 class MyComponent extends React.Component {
     constructor(props) {
@@ -54,12 +55,15 @@ class MyComponent extends React.Component {
             <section className={_s('home')}>
 
             {/* Demo-2 canvas video */}
-            <PixiVideo
+            {/* <PixiVideo
                 video_w={800}
-                video_h={450} />
+                video_h={450} /> */}
 
             {/* Demo-1 3D earth */}
-            <Earth />
+            {/* <Earth /> */}
+
+            {/* Demo 3 */}
+            <BubbleMapChart />
                 
             </section>
         );

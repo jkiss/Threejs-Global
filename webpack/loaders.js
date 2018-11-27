@@ -32,6 +32,20 @@ module.exports = {
         },
 
         {
+            test: /\.(csv)\??.*$/,
+            use: [
+                {
+                    loader: 'csv-loader',
+                    options:{
+                        dynamicTyping: true,
+                        header: true,
+                        skipEmptyLines: true
+                    }
+                }
+            ]
+        },
+
+        {
             // 将jQuery导出到全局变量，来支持依赖它的插件
             test: require.resolve('jquery'),
             use: [
