@@ -133,6 +133,14 @@ class Util {
     getBGImage(e){
         return $(e).css('backgroundImage').match(/http.+[jpg|png|svg|jpeg]/i)[0]
     }
+
+    getBCR(ele, type) {
+        if (type !== undefined) {
+            return ele.getBoundingClientRect()[type];
+        } else {
+            return ele.getBoundingClientRect();
+        }
+    }
 }
 
 export default new Util()

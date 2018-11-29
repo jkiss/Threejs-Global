@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3'
 import {queue} from 'd3-queue'
+import UTIL from 'utils'
 
 // styl
 import classNames from 'classnames/bind'
@@ -46,6 +47,15 @@ class BubbleMapChart extends Component {
             IRL: 0.1,
             KOR: 1.5,
             JPN: 0.3
+        }
+
+        this.con_colors = {
+            'North America': '#F25652',
+            'South America': '#F28F99',
+            'Africa': '#82B8BF',
+            'Europe': '#62D9B7',
+            'Asia': '#D9BB93',
+            'Oceania': '#C2E7F2'
         }
     }
     
@@ -178,11 +188,21 @@ class BubbleMapChart extends Component {
 
             _me.circle_g_boxs
                 .append('circle')
-                .style('fill', '#f40')
+                .style('fill', (d)=>{
+                    return _me.con_colors[d.continent]
+                })
                 .attr('r', _me.radius.bind(this))
     
             _me.circle_g_boxs
                 .append('text')
+
+            _me.g_box.selectAll('circle')
+                .on('mouseover', function(d){
+                    _me.showTooltip(this, d)
+                })
+                .on('mouseout', function(){
+                    _me.hideTooltip()
+                })
         }
 
         _me.circle_g_boxs
@@ -197,9 +217,35 @@ class BubbleMapChart extends Component {
     }
 
     setPremeters(){
-        this.svg = d3.select('#nk_cartogram').style('overflow', 'visible')
-        this.g_box = this.svg.append('g').attr('class', 'g_cartogram')
-        this.country_gs = null
+        let _me = this
+
+        _me.svg = d3.select('#nk_cartogram').style('overflow', 'visible')
+        _me.g_box = _me.svg.append('g').attr('class', 'g_cartogram')
+        _me.country_gs = null
+        _me.tooltip = d3.select('body')
+            .append('div')
+            .attr('class', _s('tool-tip'))
+            .attr('id', 'tool_tip')
+            .html(`<h6 class=${_s('title')}>China</h6><p class=${_s('desc')}>GDP: 12121212</p>`)
+            .on('click', ()=>{
+                d3.event.stopPropagation()
+
+                _me.hideTooltip()
+            })
+    }
+
+    showTooltip(circle, d){
+        let pos = UTIL.getBCR(circle)
+
+        d3.select('#tool_tip')
+            .style('top', window.scrollY + pos.top + 'px')
+            .style('left', pos.left + 'px')
+
+        console.log('over...', window.scrollY, pos, d)
+    }
+
+    hideTooltip(){
+        console.log('hide')
     }
 
     // data drive funcs
@@ -213,9 +259,10 @@ class BubbleMapChart extends Component {
 
     render() {
         return (
-            <section>
+            <section className={_s('box')}>
                 Bubble map
-                <svg id="nk_cartogram" width="720" height="350"></svg>
+                <svg className={_s('svg')} id="nk_cartogram" width="720" height="350"></svg>
+
             </section>
         );
     }

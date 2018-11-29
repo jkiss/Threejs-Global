@@ -36,6 +36,7 @@
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
     "mime": "^2.3.1",
+    "node-xlsx": "^0.12.1",
     "open-browser-webpack-plugin": "0.0.5",
     "papaparse": "^4.6.2",
     "poststylus": "^1.0.0",
