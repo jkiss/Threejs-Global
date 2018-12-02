@@ -17,8 +17,11 @@ import styles from './css'
 let _s = classNames.bind(styles)
 
 // res
-import geo_data from './data/countries_prepped.json'
-import data from './data/historical_data_plus.json'
+// import geo_data from './data/countries_prepped.json'
+// import data from './data/historical_data_plus.json'
+
+import geo_data from './data/countries.json'
+import data from './data/historical_data.json'
 import positions from './data/positions.json'
 import csv_link from './data/links.csv'
 
@@ -31,14 +34,14 @@ class BubbleMapChart extends Component {
         this.height= 350
         this.margin = 0
         this.duration = 1500
+        this.MIN_LABLED_WIDTH = 300
 
         // this.Q = queue()
         this.geo_data_key = _.keyBy(geo_data, 'iso')
         this.positions_key = _.keyBy(positions, 'iso')
 
-        this.rScale = d3.scaleLinear()
-            .domain([0, 563])
-            .range([4, 60])
+        this.rScale = null
+        this.format = d3.formatPrefix('$,.0', 1e6)
 
         this.countryForceXYStrength = {
             DDR: 2,
@@ -57,6 +60,11 @@ class BubbleMapChart extends Component {
             'Asia': '#D9BB93',
             'Oceania': '#C2E7F2'
         }
+
+        this.filter_data = []
+
+        // this.s_fontW = 0
+        // this.m_fontW = 0
     }
     
     componentDidMount() {
@@ -65,37 +73,47 @@ class BubbleMapChart extends Component {
         _me.setPremeters()
         
         
-        let data2016 = data[_me.year],
-            data2016_index = _.keyBy(data2016, 'iso')
+        let dataYear = data[_me.year],
+            dataYear_index = _.keyBy(dataYear, 'iso')
+
+        // compute radius scale
+        _me.rScale = d3.scaleLinear()
+            .domain(d3.extent(dataYear, d=>d.pow_gdp))
+            .range([2, 50])
+        console.log('Extent:', d3.extent(dataYear, d=>d.pow_gdp))
 
         geo_data.forEach((e)=>{
-            let d = data2016_index[e.iso]
+            let d = dataYear_index[e.iso],
+                pos = _me.positions_key[e.iso]
 
-            e.x = _me.positions_key[e.iso]['x'+'2016'+'a'] || 0
-            e.y = _me.positions_key[e.iso]['y'+'2016'+'a'] || 0
+            if(!!pos){
+                e.x = pos['x'+'2016'+'a'] || 0
+                e.y = pos['y'+'2016'+'a'] || 0
+            }else{
+                e.x = 0
+                e.y = 0
+            }
+            
             // e.x = 0
             // e.y = 0
 
             if(!!d){
-                _.extend(e, {radius: _me.radius(d), year: _me.year}, d)
-            }else{
-                _.extend(e, {radius: 0, year: _me.year}, d)
+                _me.filter_data.push(_.extend({}, e, {radius: _me.radius(d), year: _me.year}, d))
             }
-
-            
         })
-        // console.log(geo_data)
+
+        console.log('_me.filter_data', _me.filter_data)
+        // console.log('geo_data', geo_data)
 
         // bind data
-        _me.redraw(geo_data)
+        _me.redraw(_me.filter_data)
         
         // force layout
-        // console.log(geo_data)
         setTimeout(() => {
             console.info('layout...')
-            _me.layout(geo_data)
+            _me.layout(_me.filter_data)
         
-            _me.redraw(geo_data)
+            _me.redraw(_me.filter_data)
         }, 2000);
         
     }
@@ -202,6 +220,8 @@ class BubbleMapChart extends Component {
                 })
                 .on('mouseout', function(){
                     _me.hideTooltip()
+
+                    _me.handleMouseOut(this)
                 })
         }
 
@@ -210,6 +230,13 @@ class BubbleMapChart extends Component {
             .ease(d3.easeCubicOut)
             .attr('transform', _me.translate)
 
+        // add label
+        _me.circle_g_boxs
+            .selectAll('text')
+            .html((d)=>{
+                return _me.labelHtml(d)
+            })
+            
     }
 
     translate(d){
@@ -238,31 +265,118 @@ class BubbleMapChart extends Component {
         let pos = UTIL.getBCR(circle)
 
         d3.select('#tool_tip')
+            .style('display', 'block')
             .style('top', window.scrollY + pos.top + 'px')
-            .style('left', pos.left + 'px')
+            .style('left', pos.left + parseInt(d.radius) + 'px')
 
-        console.log('over...', window.scrollY, pos, d)
+        d3.select('#tool_tip h6')
+            .html(()=>{
+                return d.name
+            })
+
+        d3.select('#tool_tip p')
+            .html(()=>{
+                return 'GDP: '+this.format(d.gdp)
+            })
+
+        d3.select(circle)
+            .attr('class', _s('hover'))
     }
 
     hideTooltip(){
         console.log('hide')
+        d3.select('#tool_tip')
+            .style('display', 'none')
+    }
+
+    handleMouseOut(circle){
+        d3.select(circle)
+            .attr('class', '')
     }
 
     // data drive funcs
     radius(d){
-        if(d.athletes){
-            return this.rScale(d.athletes)
+        if(d.pow_gdp){
+            return this.rScale(d.pow_gdp)
         }else{
             return 0
         }
     }
 
+    labelHtml(d){
+        let _me = this
+        if(_me.width < _me.MIN_LABLED_WIDTH) return ''
+
+        let html = '',
+            name = d.name,
+            lines = name.split(' '),
+            _l = lines.length,
+            y = 0,
+            circle_w = d.radius * 2
+
+        let font_size = _me.getFontSize(circle_w, lines)
+
+        if(font_size < 8) return ''
+
+        lines.forEach((e, i)=>{
+            if(_l == 2){
+                y = i==0 ? '-0.45' : '0.55'
+            }else if(_l == 3){
+                y = i == 0 && '-1' || i == 2 && '1' || '0'
+            }
+
+            html += '<tspan style="font-size:'+font_size+'px;" dy="0.3em" x="0" y="'+y+'em">'+e+'</tspan>'
+        })
+
+        return html
+    }
+
+    getFontSize(w, lines){
+        let _me = this,
+            max_len_line = '',
+            max_line_width_10px = 0
+
+        lines.forEach((e, i)=>{
+            let _l = _me.estimateWidth10px(e)
+
+            max_line_width_10px = _l > max_line_width_10px ? _l : max_line_width_10px
+        })
+
+        // let line_width_10px = _me.estimateWidth10px(line)
+
+        return w / max_line_width_10px * 11.5
+    }
+
+    estimateWidth10px(str) {
+        let chars = str.length,
+            smalls = str.split(/[Itil ]/).length - 1,
+            wides = str.split(/[A-Zmw]/).length - 1,
+            widths = chars - smalls * 0.7 + wides * 0.8
+
+        return widths * 7.38
+    }
+
     render() {
         return (
             <section className={_s('box')}>
-                Bubble map
+                
                 <svg className={_s('svg')} id="nk_cartogram" width="720" height="350"></svg>
+                <div>
+                    <span>Bubble map</span>
+                    <span>B</span>
+                    <span>u</span>
+                    <span>b</span>
+                    <span>b</span>
+                    <span>l</span>
+                    <span>e</span>
+                    <span> </span>
+                    <span>m</span>
+                    <span>a</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>Itil l</span>
 
+                </div>
             </section>
         );
     }

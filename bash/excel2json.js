@@ -31,13 +31,25 @@ data_row.forEach((row, i)=>{
         // if(i == 0){
         //     console.log(e, j)
         // }
+        // let data_row = row.slice(3)
+
+        // data_row.forEach((gdp, i)=>{
+        //     gdp = gdp || 0
+        //     historical_data[title_row[i+3]] = historical_data[title_row[i+3]] || []
+
+        //     historical_data[title_row[i+3]].push({
+        //         iso: row[2],
+        //         gdp: parseInt(gdp)
+        //     })
+        // })
         if(j >= 3){
             // process history data
             historical_data[title_row[j]] = historical_data[title_row[j]] || []
 
             historical_data[title_row[j]].push({
                 iso: row[2],
-                gdp: parseInt(e)
+                gdp: parseInt(e),
+                pow_gdp: parseInt(Math.pow(e, 1/4))
             })
         }
     })
