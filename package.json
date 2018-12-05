@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "@tweenjs/tween.js": "^17.2.0",
+    "antd": "^3.11.0",
     "classnames": "^2.2.6",
     "d3": "^5.7.0",
     "d3-queue": "^3.0.7",

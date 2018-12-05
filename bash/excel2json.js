@@ -10,7 +10,10 @@
 let xlsx = require('node-xlsx'),
     fs = require('fs'),
     path = require('path'),
-    xlsx_file = fs.readFileSync(`${__dirname}/GDP-ALL.xlsx`)
+    xlsx_file = fs.readFileSync(`${__dirname}/GDP-ALL.xlsx`),
+    _ = require('lodash'),
+    nyt_json = require('./countries_prepped.json'),
+    nyt_json_key = _.keyBy(nyt_json, 'iso')
 
 let excel = xlsx.parse(xlsx_file),
     sheet = excel[0],
@@ -20,39 +23,43 @@ let excel = xlsx.parse(xlsx_file),
     historical_data = {}
 
 data_row.forEach((row, i)=>{
-    // process country data
-    countries_data.push({
-        name: row[0],
-        continent: row[1],
-        iso: row[2]
-    })
+    let iso = row[2]
 
-    row.forEach((e, j)=>{
-        // if(i == 0){
-        //     console.log(e, j)
-        // }
-        // let data_row = row.slice(3)
+    if(i < 218 && (iso.indexOf('del') < 0)){
+        let geo = nyt_json_key[iso] || {lng2: 0, lat2: 0}
 
-        // data_row.forEach((gdp, i)=>{
-        //     gdp = gdp || 0
-        //     historical_data[title_row[i+3]] = historical_data[title_row[i+3]] || []
-
-        //     historical_data[title_row[i+3]].push({
-        //         iso: row[2],
-        //         gdp: parseInt(gdp)
-        //     })
-        // })
-        if(j >= 3){
-            // process history data
-            historical_data[title_row[j]] = historical_data[title_row[j]] || []
-
-            historical_data[title_row[j]].push({
-                iso: row[2],
-                gdp: parseInt(e),
-                pow_gdp: parseInt(Math.pow(e, 1/4))
-            })
+        if(!nyt_json_key[iso]){
+            console.log('iso', i, iso)
         }
-    })
+        
+        // process country data
+        countries_data.push({
+            name: row[0],
+            continent: row[1],
+            iso: iso,
+            x: geo.lng2,
+            y: geo.lat2,
+            lng: geo.lng2,
+            lat: geo.lat2
+        })
+
+        row.forEach((e, j)=>{
+            // if(i == 0){
+            //     console.log(e, j)
+            // }
+            
+            if(j >= 3){
+                // process history data
+                historical_data[title_row[j]] = historical_data[title_row[j]] || []
+
+                historical_data[title_row[j]].push({
+                    iso: iso,
+                    gdp: parseInt(e),
+                    pow_gdp: parseInt(Math.pow(e, 1/4))
+                })
+            }
+        })
+    }
 });
 
 // console.log(historical_data['1978'])

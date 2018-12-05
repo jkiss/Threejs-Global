@@ -10,6 +10,8 @@ body
     font-family 'Roboto'
 
 svg
+    margin-top 50px
+    
     text
         font-family Roboto
         line-height 1
@@ -49,3 +51,27 @@ svg
 .hover
     stroke #333
     stroke-width 1px
+
+.control-box
+    display flex
+    align-items center
+
+.play-box
+    width 30px
+    height 30px
+    background-size 70%
+    background-position 50% 50%
+    background-repeat no-repeat
+    // border solid 1px #333
+    // border-radius 5px
+    cursor pointer
+
+    &[data-play~=play]
+        background-image url(./res/play3.png)
+
+    &[data-play~=pause]
+        background-image url(./res/pause2.png)
+
+.slider-box
+    margin-left 10px
+    flex-grow 1

@@ -2,7 +2,7 @@
  * @Author: Nokey 
  * @Date: 2018-11-21 11:04:26 
  * @Last Modified by: Mr.B
- * @Last Modified time: 2018-11-21 11:15:05
+ * @Last Modified time: 2018-12-04 18:24:23
  */
 'use strict'; 
 
@@ -10,6 +10,12 @@ import React, { Component } from 'react';
 import * as d3 from 'd3'
 import {queue} from 'd3-queue'
 import UTIL from 'utils'
+
+// com
+import { Slider, Button } from 'antd'
+import 'antd/lib/slider/style/index.css'
+import 'antd/lib/tooltip/style/index.css'
+import 'antd/lib/button/style/index.css'
 
 // styl
 import classNames from 'classnames/bind'
@@ -28,12 +34,21 @@ import csv_link from './data/links.csv'
 class BubbleMapChart extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            disabled: false,
+            width: 840,
+            height: 430,
+            autoplay: 'play'
+        }
         
-        this.year = '2016'
-        this.width = 720
-        this.height= 350
+        this.year = '1978'
+        this.base_width = 840
+        this.base_height = 430
+        this.base_ratio = 0.5119
+        this.map_scale = 1
         this.margin = 0
-        this.duration = 1500
+        this.duration = 1000
         this.MIN_LABLED_WIDTH = 300
 
         // this.Q = queue()
@@ -61,10 +76,7 @@ class BubbleMapChart extends Component {
             'Oceania': '#C2E7F2'
         }
 
-        this.filter_data = []
-
-        // this.s_fontW = 0
-        // this.m_fontW = 0
+        // this.filter_data = []
     }
     
     componentDidMount() {
@@ -72,54 +84,58 @@ class BubbleMapChart extends Component {
             
         _me.setPremeters()
         
+        _me.refresh(_me.year)
         
-        let dataYear = data[_me.year],
+        $(window).on('resize', _me.onResize.bind(this))
+
+    }
+
+    refresh(year){
+        let _me = this,
+            dataYear = data[year],
             dataYear_index = _.keyBy(dataYear, 'iso')
 
-        // compute radius scale
+        _me.year = year
+        console.log('refresh:', year)
+        // 1. compute radius scale
         _me.rScale = d3.scaleLinear()
             .domain(d3.extent(dataYear, d=>d.pow_gdp))
             .range([2, 50])
-        console.log('Extent:', d3.extent(dataYear, d=>d.pow_gdp))
 
+        // 2. prepare the data
         geo_data.forEach((e)=>{
-            let d = dataYear_index[e.iso],
-                pos = _me.positions_key[e.iso]
+            let d = dataYear_index[e.iso]
+                // ,pos = _me.positions_key[e.iso]
 
-            if(!!pos){
-                e.x = pos['x'+'2016'+'a'] || 0
-                e.y = pos['y'+'2016'+'a'] || 0
-            }else{
-                e.x = 0
-                e.y = 0
-            }
+            // if(!!pos){
+            //     e.x = pos['x'+'2016'+'a'] || 0
+            //     e.y = pos['y'+'2016'+'a'] || 0
+            // }else{
+            //     e.x = 0
+            //     e.y = 0
+            // }
             
-            // e.x = 0
-            // e.y = 0
+            // make a stable layout according to first position
+            e.x = e.lng
+            e.y = e.lat
 
             if(!!d){
-                _me.filter_data.push(_.extend({}, e, {radius: _me.radius(d), year: _me.year}, d))
+                // _me.filter_data.push(_.extend({}, e, {radius: _me.radius(d), year: year}, d))
+                _.extend(e, {radius: _me.radiusBase(d), year: year}, d)
             }
         })
+        // console.log(filter_data)
 
-        console.log('_me.filter_data', _me.filter_data)
-        // console.log('geo_data', geo_data)
+        // 3. layout
+        _me.layout(geo_data)
 
-        // bind data
-        _me.redraw(_me.filter_data)
-        
-        // force layout
-        setTimeout(() => {
-            console.info('layout...')
-            _me.layout(_me.filter_data)
-        
-            _me.redraw(_me.filter_data)
-        }, 2000);
-        
+        // 4. draw
+        _me.redraw(geo_data, _me.duration)
     }
 
     forceLink(simulation){
-        let links = []
+        let _me = this,
+            links = []
 
         csv_link.forEach((e)=>{
             links.push({
@@ -132,6 +148,11 @@ class BubbleMapChart extends Component {
         let f_link = d3.forceLink(links).id((d)=>{ 
             return d.iso 
         }).distance((d)=>{
+            console.log('link', d)
+            let ra = _me.radius(d.source),
+                rb = _me.radius(d.target)
+
+            // return ra + rb
             return d.value
         })
 
@@ -179,7 +200,7 @@ class BubbleMapChart extends Component {
             simulation = d3.forceSimulation(data).stop()
 
         // simulation
-            // .force('charge', d3.forceManyBody().strength(0.5))
+        //     .force('charge', d3.forceManyBody().strength(20))
             // .force('x', d3.forceX().strength(0.002))
             // .force('y', d3.forceY().strength(0.002))
         _me.forceX(simulation)
@@ -193,16 +214,17 @@ class BubbleMapChart extends Component {
             simulation.tick()
         }
 
+        console.log('layout...')
     }
 
-    redraw(data){
+    redraw(data, ms){
         let _me = this
-
+        console.log('draw...', data)
         if(!_me.circle_g_boxs){
             _me.circle_g_boxs = _me.g_box.selectAll('g')
                 .data(data)
                 .enter().append('g')
-                .attr('transform', _me.translate)
+                .attr('transform', _me.translate.bind(this))
 
             _me.circle_g_boxs
                 .append('circle')
@@ -226,9 +248,15 @@ class BubbleMapChart extends Component {
         }
 
         _me.circle_g_boxs
-            .transition().duration(_me.duration)
+            .transition().duration(ms)
             .ease(d3.easeCubicOut)
-            .attr('transform', _me.translate)
+            .attr('transform', _me.translate.bind(this))
+
+        _me.circle_g_boxs
+            .selectAll('circle')
+            .transition().duration(ms)
+            .ease(d3.easeCubicOut)
+            .attr('r', _me.radius.bind(this))
 
         // add label
         _me.circle_g_boxs
@@ -236,11 +264,27 @@ class BubbleMapChart extends Component {
             .html((d)=>{
                 return _me.labelHtml(d)
             })
-            
+  
     }
 
     translate(d){
-        return 'translate(' + d.x + ',' + d.y + ')'
+        return 'translate(' + d.x * this.map_scale + ',' + d.y * this.map_scale + ')'
+    }
+
+    radius(d){
+        if(d.pow_gdp){
+            return this.rScale(d.pow_gdp) * this.map_scale
+        }else{
+            return 0
+        }
+    }
+
+    radiusBase(d){
+        if(d.pow_gdp){
+            return this.rScale(d.pow_gdp)
+        }else{
+            return 0
+        }
     }
 
     setPremeters(){
@@ -259,6 +303,16 @@ class BubbleMapChart extends Component {
 
                 _me.hideTooltip()
             })
+
+        // viewport size
+        let wrap_w = _me.svg_box.clientWidth
+
+        _me.setState({
+            width: wrap_w,
+            height: wrap_w * _me.base_ratio
+        })
+
+        _me.setMapScale()
     }
 
     showTooltip(circle, d){
@@ -294,25 +348,17 @@ class BubbleMapChart extends Component {
             .attr('class', '')
     }
 
-    // data drive funcs
-    radius(d){
-        if(d.pow_gdp){
-            return this.rScale(d.pow_gdp)
-        }else{
-            return 0
-        }
-    }
-
     labelHtml(d){
         let _me = this
-        if(_me.width < _me.MIN_LABLED_WIDTH) return ''
+        if(_me.state.width < _me.MIN_LABLED_WIDTH) return ''
 
         let html = '',
             name = d.name,
             lines = name.split(' '),
             _l = lines.length,
             y = 0,
-            circle_w = d.radius * 2
+            // circle_w = d.radius * 2
+            circle_w = _me.radius(d) * 2
 
         let font_size = _me.getFontSize(circle_w, lines)
 
@@ -356,27 +402,84 @@ class BubbleMapChart extends Component {
         return widths * 7.38
     }
 
+    handleSlideChange(value){
+        let _me = this
+        
+        _me.year != value && _me.refresh(value)
+
+        console.log('change year...', value)
+    }
+
+    setMapScale(){
+        let _me = this,
+            wrap_w = _me.svg_box.clientWidth
+
+        _me.map_scale = wrap_w / _me.base_width
+    }
+
+    onResize(){
+        let _me = this,
+            wrap_w = _me.svg_box.clientWidth
+
+        _me.setState({
+            width: wrap_w,
+            height: wrap_w * _me.base_ratio
+        })
+
+        _me.setMapScale()
+
+        _me.redraw(geo_data, 0)
+    }
+
+    handleAutoplay(){
+        let _me = this,
+            _autoplay = _me.state.autoplay
+
+        if(_autoplay == 'pause'){
+            // stop autoplay
+            _me.setState({
+                autoplay: 'play',
+                disabled: false
+            })
+        }else{
+            // start autoplay
+            _me.setState({
+                autoplay: 'pause',
+                disabled: true
+            })
+        }
+    }
+
     render() {
         return (
-            <section className={_s('box')}>
+            <section 
+                className={_s('box')}
+                ref={ele=>this.svg_box=ele}
+                >
                 
-                <svg className={_s('svg')} id="nk_cartogram" width="720" height="350"></svg>
-                <div>
-                    <span>Bubble map</span>
-                    <span>B</span>
-                    <span>u</span>
-                    <span>b</span>
-                    <span>b</span>
-                    <span>l</span>
-                    <span>e</span>
-                    <span> </span>
-                    <span>m</span>
-                    <span>a</span>
-                    <span>p</span>
-                    <span>t</span>
-                    <span>Itil l</span>
+                <svg 
+                    className={_s('svg')} 
+                    id="nk_cartogram" 
+                    width={this.state.width} 
+                    height={this.state.height}></svg>
 
+                <div className={_s('control-box')}>
+                    <div 
+                        className={_s('play-box')} 
+                        data-play={this.state.autoplay}
+                        onClick={this.handleAutoplay.bind(this)}
+                        ></div>
+
+                    <div className={_s('slider-box')}>
+                        <Slider
+                            min={1978} max={2017} 
+                            defaultValue={1978} 
+                            disabled={this.state.disabled}
+                            onAfterChange={this.handleSlideChange.bind(this)}
+                            />
+                    </div>
                 </div>
+                
             </section>
         );
     }
