@@ -39,7 +39,8 @@ class BubbleMapChart extends Component {
             disabled: false,
             width: 840,
             height: 430,
-            autoplay: 'play'
+            autoplay: 'play',
+            year: 1978
         }
         
         this.year = '1978'
@@ -48,7 +49,7 @@ class BubbleMapChart extends Component {
         this.base_ratio = 0.5119
         this.map_scale = 1
         this.margin = 0
-        this.duration = 1000
+        this.duration = 1200
         this.MIN_LABLED_WIDTH = 300
 
         // this.Q = queue()
@@ -77,6 +78,8 @@ class BubbleMapChart extends Component {
         }
 
         // this.filter_data = []
+        this.autoplay_timer = null
+        this.interval = 1300
     }
     
     componentDidMount() {
@@ -148,7 +151,6 @@ class BubbleMapChart extends Component {
         let f_link = d3.forceLink(links).id((d)=>{ 
             return d.iso 
         }).distance((d)=>{
-            console.log('link', d)
             let ra = _me.radius(d.source),
                 rb = _me.radius(d.target)
 
@@ -219,7 +221,7 @@ class BubbleMapChart extends Component {
 
     redraw(data, ms){
         let _me = this
-        console.log('draw...', data)
+        // console.log('draw...', data)
         if(!_me.circle_g_boxs){
             _me.circle_g_boxs = _me.g_box.selectAll('g')
                 .data(data)
@@ -405,9 +407,15 @@ class BubbleMapChart extends Component {
     handleSlideChange(value){
         let _me = this
         
-        _me.year != value && _me.refresh(value)
-
-        console.log('change year...', value)
+        if(_me.state.year != value){
+            _me.setState((prevState, props)=>{
+                _me.refresh(value)
+                console.log('change year...', value)
+                return {
+                    year: value
+                }
+            })
+        }
     }
 
     setMapScale(){
@@ -441,16 +449,52 @@ class BubbleMapChart extends Component {
                 autoplay: 'play',
                 disabled: false
             })
+            clearInterval(_me.autoplay_timer)
         }else{
             // start autoplay
             _me.setState({
                 autoplay: 'pause',
                 disabled: true
             })
+            _me.autoplay_timer = setInterval(() => {
+                _me.setState((prevState, props)=>{
+                    let _val, _isPlay
+    
+                    if(prevState.year >= 2017){
+                        _val = 1978
+    
+                        _me.refresh(_val)
+    
+                        return {
+                            year: _val
+                        }
+                    }else{
+                        _val = prevState.year + 1
+    
+                        _me.refresh(_val)
+                        return {
+                            year: _val
+                        }
+                    }
+                })
+            }, _me.interval);
         }
     }
 
     render() {
+        let slider_option = {
+            min: 1978,
+            max: 2017,
+            disabled: this.state.disabled,
+            onAfterChange: this.handleSlideChange.bind(this)
+        }
+
+        if(this.state.autoplay == 'pause'){
+            slider_option['value'] = this.state.year
+        }else{
+            slider_option['defaultValue'] = this.state.year
+        }
+
         return (
             <section 
                 className={_s('box')}
@@ -471,12 +515,7 @@ class BubbleMapChart extends Component {
                         ></div>
 
                     <div className={_s('slider-box')}>
-                        <Slider
-                            min={1978} max={2017} 
-                            defaultValue={1978} 
-                            disabled={this.state.disabled}
-                            onAfterChange={this.handleSlideChange.bind(this)}
-                            />
+                        <Slider {...slider_option} />
                     </div>
                 </div>
                 
