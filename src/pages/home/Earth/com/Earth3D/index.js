@@ -12,7 +12,7 @@ import Stats from 'stats'
 import TWEEN from '@tweenjs/tween.js'
 
 // res
-import img_earth from './img/earth6.jpg'
+import img_earth from './img/earth.jpg'
 import img_weather from './img/weather.jpg'
 import img_marker from './img/marker.png'
 
@@ -51,14 +51,14 @@ class Earth3D{
 
         // Camera
         let xyz = _me._xyzFromLatLng(_me.INIT_LAT_LON.lat, _me.INIT_LAT_LON.lon, _me.CAMERA_RADIUS)
-        _me.CAMERA = new THREE.PerspectiveCamera(60, opt.r_width / opt.r_height, 1, 2000)
+        _me.CAMERA = new THREE.PerspectiveCamera(60, opt.canvas_width / opt.canvas_height, 1, 2000)
         _me.CAMERA.position.x = xyz.x
         _me.CAMERA.position.y = xyz.y
         _me.CAMERA.position.z = xyz.z
         _me.CAMERA.lookAt( _me.SCENE.position )
         
         // Scene
-        // _me.SCENE.background = new THREE.Color(opt.r_color)
+        // _me.SCENE.background = new THREE.Color(opt.canvas_color)
         _me.SCENE.add(_me.GROUP)
 
         /**
@@ -139,7 +139,7 @@ class Earth3D{
             alpha: true
         })
         _me.renderer.setPixelRatio(window.devicePixelRatio)
-        _me.renderer.setSize(opt.r_width, opt.r_height)
+        _me.renderer.setSize(opt.canvas_width, opt.canvas_height)
         _me.renderer.setClearColor(0xffffff, 0)
         _me.container.appendChild(_me.renderer.domElement)
 

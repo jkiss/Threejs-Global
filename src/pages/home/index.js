@@ -60,10 +60,10 @@ class MyComponent extends React.Component {
                 video_h={450} /> */}
 
             {/* Demo-1 3D earth */}
-            {/* <Earth /> */}
+            <Earth />
 
             {/* Demo 3 */}
-            <BubbleMapChart />
+            {/* <BubbleMapChart /> */}
                 
             </section>
         );
