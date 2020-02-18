@@ -85,7 +85,7 @@ class Earth extends React.Component {
         _me.CAMERA.position.x = xyz.x
         _me.CAMERA.position.y = xyz.y
         _me.CAMERA.position.z = xyz.z
-        _me.CAMERA.lookAt( _me.SCENE.position )
+        _me.CAMERA.lookAt(_me.SCENE.position)
         
         // Scene
         // _me.SCENE.background = new THREE.Color(0x000000)
@@ -128,14 +128,14 @@ class Earth extends React.Component {
         /**
          * Add Earth
          */
-        _me.LOADER.load( img_earth, (texture)=>{
-            var geometry = new THREE.SphereGeometry( _me.RADIUS, 64, 64 );
+        _me.LOADER.load(img_earth, (texture)=>{
+            var geometry = new THREE.SphereGeometry(_me.RADIUS, 64, 64);
             // var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
-            var material = new THREE.MeshPhongMaterial( { 
+            var material = new THREE.MeshPhongMaterial({ 
                 map: texture, 
                 specular: new THREE.Color(0,0,0),
                 shininess: .25
-            } )
+            })
 
             _me.GROUP.add(new THREE.Mesh(geometry, material))
 
@@ -237,6 +237,16 @@ class Earth extends React.Component {
         
         _me.renderer.render(_me.SCENE, _me.CAMERA)
 
+        // test
+        _me.geometry.vertices.forEach((particle)=>{
+            let dX, dY, dZ
+            dX = Math.random() * 1 - .5
+            dY = Math.random() * 1 - .5
+            dZ = Math.random() * 1 - .5
+
+            particle.add(new THREE.Vector3(dX, dY, dZ))
+        })
+        // _me.geometry.verticesNeedUpdate = true
     }
 
     _updateMarker(point){
@@ -299,13 +309,28 @@ class Earth extends React.Component {
 
     componentDidMount() {
         let _me = this
+
+        let material = new THREE.PointCloudMaterial({
+            color: 0xffffcc
+        })
+        _me.geometry = new THREE.Geometry()
+        let x, y, z
+        for (let i = 0; i < 1000; i++) {
+            x = (Math.random() * 800) - 400
+            y = (Math.random() * 800) - 400
+            z = (Math.random() * 800) - 400
+
+            _me.geometry.vertices.push(new THREE.Vector3(x, y, z))
+        }
+
+        let pointCloud = new THREE.PointCloud(_me.geometry, material)
         
         _me.init({
-            canvas_width: 800,
-            canvas_height: 400,
             canvas_color: 0x000000,
             debug: true
         })
+
+        _me.SCENE.add(pointCloud)
     }
 
     render() {
